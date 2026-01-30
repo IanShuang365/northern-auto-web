@@ -1,0 +1,70 @@
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css'
+import { Header } from './components/Header'
+import { HeroSection } from './components/HeroSection'
+import { ProductsSection } from './components/ProductsSection'
+import { ShopTypesSection } from './components/ShopTypesSection'
+import { FeaturesSection } from './components/FeaturesSection'
+import { VideosSection } from './components/VideosSection'
+import { FAQSection } from './components/FAQSection'
+import { Footer } from './components/Footer'
+import { ProductDetail } from './pages/ProductDetail'
+import { About } from './pages/About'
+import { Contact } from './pages/Contact'
+import { GeneralRepair } from './pages/GeneralRepair'
+import { TireDealer } from './pages/TireDealer'
+import { CarDealership } from './pages/CarDealership'
+import { HeavyDuty } from './pages/HeavyDuty'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#d32f2f',
+    },
+  },
+  typography: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  },
+});
+
+function HomePage() {
+  return (
+    <>
+      <Header />
+      <HeroSection />
+      <ProductsSection />
+      <ShopTypesSection />
+      <FeaturesSection />
+      <VideosSection />
+      <FAQSection />
+      <Footer />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product/:productId" element={<ProductDetail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/shop/general-repair" element={<GeneralRepair />} />
+          <Route path="/shop/tire-dealer" element={<TireDealer />} />
+          <Route path="/shop/car-dealership" element={<CarDealership />} />
+          <Route path="/shop/heavy-duty" element={<HeavyDuty />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
+  )
+}
+
+export default App
