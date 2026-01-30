@@ -84,7 +84,7 @@ export const FeaturesSection: React.FC = () => {
         </Box>
 
         <Grid container spacing={4}>
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <Grid item xs={12} md={4} key={feature.id}>
               <Card
                 sx={{
