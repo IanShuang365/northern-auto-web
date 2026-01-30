@@ -77,7 +77,7 @@ export const Header: React.FC = () => {
                 letterSpacing: '0.5px',
               }}
             >
-              BDB Car Tools
+              Northern Auto Parts
             </Typography>
           </Box>
 
