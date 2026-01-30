@@ -16,6 +16,12 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
+type NavLink = {
+  label: string;
+  href: string;
+  isHash?: boolean;
+};
+
 export const InfoSidebar: React.FC = () => {
   const [open, setOpen] = useState(false);
 
@@ -40,17 +46,17 @@ export const InfoSidebar: React.FC = () => {
     {
       title: 'Products',
       links: [
-        { label: 'Wheel Balancers', href: '/#products' },
-        { label: 'Wheel Aligners', href: '/#products' },
-        { label: 'Lift Systems', href: '/#products' },
-        { label: 'Tire Changers', href: '/#products' },
+        { label: 'Wheel Balancers', href: '/product/1' },
+        { label: 'Wheel Aligners', href: '/product/2' },
+        { label: 'Lift Systems', href: '/product/3' },
+        { label: 'Tire Changers', href: '/product/4' },
       ],
     },
     {
       title: 'Resources',
       links: [
-        { label: 'Videos', href: '/#videos' },
-        { label: 'FAQ', href: '/#faq' },
+        { label: 'Videos', href: '/#videos', isHash: true },
+        { label: 'FAQ', href: '/#faq', isHash: true },
       ],
     },
   ];
@@ -167,14 +173,59 @@ export const InfoSidebar: React.FC = () => {
             {section.title}
           </Typography>
           <Stack spacing={0.8}>
-            {section.links.map((link) => {
-              const isRouterLink = link.href.startsWith('/') || link.href.startsWith('#');
-              return (
+            {section.links.map((link: NavLink) => {
+              const isInternal = link.href.startsWith('/');
+              if (link.isHash) {
+                return (
+                  <Link
+                    key={link.href}
+                    component={RouterLink}
+                    to={link.href}
+                    onClick={() => setOpen(false)}
+                    sx={{
+                      color: '#e0e0e0',
+                      textDecoration: 'none',
+                      fontSize: '0.9rem',
+                      transition: 'color 0.3s ease',
+                      cursor: 'pointer',
+                      pl: 1,
+                      borderLeft: '2px solid transparent',
+                      '&:hover': {
+                        color: '#ffeb3b',
+                        borderLeftColor: '#d32f2f',
+                      },
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              }
+              return isInternal ? (
                 <Link
                   key={link.href}
-                  component={isRouterLink && !link.href.startsWith('#') ? RouterLink : 'a'}
-                  to={isRouterLink && !link.href.startsWith('#') ? link.href : undefined}
-                  href={isRouterLink && link.href.startsWith('#') ? link.href : undefined}
+                  component={RouterLink}
+                  to={link.href}
+                  onClick={() => setOpen(false)}
+                  sx={{
+                    color: '#e0e0e0',
+                    textDecoration: 'none',
+                    fontSize: '0.9rem',
+                    transition: 'color 0.3s ease',
+                    cursor: 'pointer',
+                    pl: 1,
+                    borderLeft: '2px solid transparent',
+                    '&:hover': {
+                      color: '#ffeb3b',
+                      borderLeftColor: '#d32f2f',
+                    },
+                  }}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
                   onClick={() => setOpen(false)}
                   sx={{
                     color: '#e0e0e0',

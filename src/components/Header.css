@@ -4,7 +4,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1100;
 }
 
 .header-container {
@@ -36,4 +36,218 @@
 
 .nav-menu a:hover {
   color: #d32f2f;
+}
+
+/* --- Mega Menu Styles --- */
+.mega-menu-root {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.mega-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #b71c1c;
+  background: #fff;
+  border: none;
+  border-bottom: 2px solid #b71c1c;
+  padding: 0.5rem 1.2rem 0.3rem 1.2rem;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.2s, border-color 0.2s;
+  box-shadow: 0 2px 8px rgba(211,47,47,0.08);
+  z-index: 1201;
+}
+.mega-menu-btn svg {
+  margin-left: 0.5rem;
+  width: 1.2em;
+  height: 1.2em;
+  transition: transform 0.2s;
+}
+.mega-menu-btn[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+.mega-menu-btn[aria-expanded="true"],
+.mega-menu-btn:hover {
+  background: #fff;
+  color: #b71c1c;
+  border-bottom: 2px solid #b71c1c;
+}
+.mega-menu-outer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 75px;
+  width: 100vw;
+  z-index: 1101;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  pointer-events: auto;
+}
+.mega-menu-panel {
+  width: 100%;
+  min-width: 100vw;
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(211,47,47,0.18);
+  display: flex;
+  gap: 2.5rem;
+  justify-content: flex-start;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 2.5rem;
+  padding-bottom: 0;
+  animation: megaMenuFadeIn 0.18s;
+  overflow-x: auto;
+}
+@keyframes megaMenuFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.mega-menu-col {
+  flex: 1 1 0;
+  min-width: 200px;
+  max-width: 260px;
+  border-right: 1px solid #e0e0e0;
+  padding-right: 2rem;
+  margin-right: 2rem;
+}
+.mega-menu-col:last-child {
+  border-right: none;
+  margin-right: 0;
+  padding-right: 0;
+}
+.mega-menu-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #b71c1c;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.5px;
+  display: block;
+  padding-bottom: 0.2rem;
+}
+.mega-menu-desc {
+  font-style: italic;
+  color: #888;
+  font-size: 0.98rem;
+  margin-bottom: 0.5rem;
+}
+.mega-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2rem 0;
+}
+.mega-menu-list li {
+  line-height: 1.5em;
+  margin-bottom: 0.2em;
+}
+.mega-menu-link {
+  color: #222;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.18s, padding-left 0.18s;
+  padding-left: 0;
+}
+.mega-menu-link:hover {
+  color: #b71c1c;
+  padding-left: 0.5em;
+}
+.mega-menu-viewall-wrapper {
+  width: 100%;
+  background: #fff;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 8px 32px rgba(211,47,47,0.10);
+  padding-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+.mega-menu-viewall {
+  display: block;
+  margin: 2rem auto 0 auto;
+  background: #b71c1c;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 0.9rem 2.5rem;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #b71c1c;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  font-size: 1.1rem;
+}
+.mega-menu-viewall:hover {
+  background: #fff;
+  color: #111;
+  border: 2px solid #111;
+}
+
+/* Responsive: Convert to simple dropdown on narrow screens */
+@media (max-width: 768px) {
+  .mega-menu-outer {
+    position: absolute;
+    left: 0;
+    right: auto;
+    top: 100%;
+    width: 100%;
+    max-width: 400px;
+    min-width: 300px;
+    margin-top: 0.5rem;
+  }
+
+  .mega-menu-panel {
+    width: 100%;
+    min-width: auto;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+  .mega-menu-col {
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 1rem;
+    margin: 0;
+    max-width: 100%;
+    min-width: auto;
+  }
+
+  .mega-menu-col:last-child {
+    border-bottom: none;
+  }
+
+  .mega-menu-title {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .mega-menu-desc {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .mega-menu-list {
+    margin-bottom: 0.8rem;
+  }
+
+  .mega-menu-list li {
+    margin-bottom: 0.3em;
+  }
+
+  .mega-menu-link {
+    font-size: 0.9rem;
+  }
+
+  .mega-menu-viewall-wrapper {
+    border-radius: 0;
+    padding-bottom: 1rem;
+  }
+
+  .mega-menu-viewall {
+    margin: 1rem 1rem 0 1rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+  }
 }

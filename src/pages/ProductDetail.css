@@ -1,0 +1,91 @@
+/* Product Detail Page Styles */
+
+.product-detail-hero {
+  position: relative;
+  min-height: 600px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.feature-tabs-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.feature-tab-button {
+  transition: all 0.3s ease;
+}
+
+.feature-tab-button:hover {
+  background-color: rgba(211, 47, 47, 0.05);
+}
+
+.feature-tab-button.active {
+  color: #d32f2f;
+  border-bottom: 3px solid #d32f2f;
+  font-weight: 700;
+}
+
+.benefit-card {
+  transition: all 0.3s ease;
+  border-left: 4px solid #d32f2f;
+}
+
+.benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.spec-card {
+  border-left: 3px solid #d32f2f;
+  background-color: #f9f9f9;
+}
+
+.made-in-usa-section {
+  position: relative;
+  min-height: 400px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.made-in-usa-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(26deg, rgba(0, 0, 0, 0.7) 0%, rgba(39, 46, 56, 0.7) 100%);
+  z-index: 1;
+}
+
+.made-in-usa-content {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .product-detail-hero {
+    min-height: 400px;
+  }
+
+  .made-in-usa-section {
+    min-height: 350px;
+  }
+
+  .feature-tabs-container {
+    flex-wrap: nowrap;
+  }
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   AppBar,
@@ -8,16 +8,116 @@ import {
   Link,
   Container,
 } from '@mui/material';
+import '../components/Header.css';
 import logoImage from '../assets/logo.jpg';
 import { SearchBar } from './SearchBar';
 import { InfoSidebar } from './InfoSidebar';
 
 export const Header: React.FC = () => {
+
+  // Mega menu data structure
+  const megaMenuColumns = [
+    {
+      title: 'TIRE CHANGERS',
+      href: '/products#tire-changers',
+      desc: 'Light Passenger Car and Truck',
+      items: [
+        { label: 'Maxx Series', href: '/product/maxx-series', highlight: false },
+        { label: 'RC Series', href: '/product/rc-series', highlight: false },
+        { label: 'C Series', href: '/product/c-series', highlight: false },
+        { label: 'Tilt Back Tire Changers', href: '/product/tilt-back', highlight: false },
+      ],
+      heavyDesc: 'Heavy Duty',
+      heavyItems: [
+        { label: 'CHD Series', href: '/product/chd-series', highlight: false },
+        { label: 'HIT Series', href: '/product/hit-series', highlight: false },
+      ],
+    },
+    {
+      title: 'WHEEL BALANCERS',
+      href: '/products#wheel-balancers',
+      desc: 'Light Passenger Car and Truck',
+      items: [
+        { label: 'E900 Diagnostic Balancer', href: '/product/e900', highlight: true },
+        { label: 'Direct Drive Series', href: '/product/direct-drive', highlight: false },
+        { label: 'Space Saving Wheel Balancers', href: '/product/space-saving', highlight: false },
+      ],
+      heavyDesc: 'Heavy Duty',
+      heavyItems: [
+        { label: 'HD 6450', href: '/product/hd-6450', highlight: false },
+      ],
+    },
+    {
+      title: 'LIFTS',
+      href: '/products#lifts',
+      desc: 'Light Passenger Car and Truck',
+      items: [
+        { label: 'Scissor Lifts', href: '/product/scissor-lifts', highlight: false },
+        { label: '2 Post', href: '/product/2-post-lifts', highlight: false },
+        { label: '4 Post', href: '/product/4-post-lifts', highlight: false },
+        { label: 'Low Profile Lifts', href: '/product/low-profile-lifts', highlight: false },
+      ],
+      heavyDesc: 'Heavy Duty',
+      heavyItems: [
+        { label: 'Mobile Columns', href: '/product/mobile-columns', highlight: false },
+      ],
+    },
+    {
+      title: 'AIR COMPRESSORS',
+      href: '/product/air-compressors',
+      items: [
+        { label: 'Maxx Air Compressors', href: '/product/maxx-air-compressor', highlight: false },
+      ],
+      extra: [
+        {
+          title: 'ALIGNMENT',
+          href: '/products#alignment',
+          items: [
+            { label: 'CWA 6500 Wheel Aligner', href: '/product/cwa-6500', highlight: false },
+            { label: 'CWA 6000 Wheel Aligner', href: '/product/cwa-6000', highlight: false },
+          ],
+        },
+        {
+          title: 'INSPECTION LANE',
+          href: '/products#inspection',
+          items: [
+            { label: 'Tread Depth Scanner', href: '/product/tread-depth-scanner', highlight: false },
+            { label: 'Bodyguard', href: '/product/bodyguard', highlight: false },
+            { label: 'Alignment Check', href: '/product/alignment-check', highlight: false },
+          ],
+        },
+      ],
+    },
+  ];
+
   const navLinks = [
-    { label: 'Products', href: '#products' },
+    // Products will be handled as a dropdown
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ];
+
+  // Dropdown state
+  const [megaOpen, setMegaOpen] = useState(false);
+  const megaMenuRef = React.useRef<HTMLDivElement>(null);
+
+  const handleMegaToggle = () => setMegaOpen(!megaOpen);
+
+  // Close menu when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (megaMenuRef.current && !megaMenuRef.current.contains(event.target as Node)) {
+        setMegaOpen(false);
+      }
+    };
+
+    if (megaOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [megaOpen]);
 
   return (
     <AppBar
@@ -41,11 +141,15 @@ export const Header: React.FC = () => {
         >
           {/* Logo and Brand */}
           <Box
+            component={RouterLink}
+            to="/"
             sx={{
               display: 'flex',
               alignItems: 'center',
               gap: 1.5,
               transition: 'transform 0.3s ease',
+              textDecoration: 'none',
+              cursor: 'pointer',
               '&:hover': {
                 transform: 'scale(1.02)',
               },
@@ -108,6 +212,100 @@ export const Header: React.FC = () => {
               },
             }}
           >
+            {/* Products Mega Menu - Custom HTML/CSS version */}
+            <div
+              ref={megaMenuRef}
+              className="mega-menu-root"
+              style={{ display: 'flex', alignItems: 'center', position: 'relative' }}
+            >
+              <button
+                type="button"
+                className="mega-menu-btn"
+                aria-expanded={megaOpen}
+                onClick={handleMegaToggle}
+              >
+                <span>Products</span>
+                <svg viewBox="0 0 26 27" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.03833 9.80575L13 14.7674L17.9725 9.80575L19.5 11.3333L13 17.8333L6.5 11.3333L8.03833 9.80575Z"></path>
+                </svg>
+              </button>
+              {megaOpen && (
+                <div className="mega-menu-outer">
+                  <div className="mega-menu-panel">
+                    {megaMenuColumns.map((col) => (
+                      <div className="mega-menu-col" key={col.title}>
+                        <a href={col.href} className="mega-menu-title menu--item-title hover:text-red-700" onClick={() => setMegaOpen(false)}>{col.title}</a>
+                        {col.desc && <p className="mega-menu-desc">{col.desc}</p>}
+                        {col.items && (
+                          <ul className="mega-menu-list">
+                            {col.items.map((item) => (
+                              <li key={item.label} style={{ lineHeight: '1.4em' }}>
+                                <a className="mega-menu-link" href={item.href} onClick={() => setMegaOpen(false)}>
+                                  {item.highlight ? <span style={{ color: '#AE282E', fontWeight: 700 }}>NEW </span> : null}
+                                  {item.label}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                        {col.heavyDesc && <p className="mega-menu-desc">{col.heavyDesc}</p>}
+                        {col.heavyItems && (
+                          <ul className="mega-menu-list">
+                            {col.heavyItems.map((item) => (
+                              <li key={item.label} style={{ lineHeight: '1.4em' }}>
+                                <a className="mega-menu-link" href={item.href} onClick={() => setMegaOpen(false)}>{item.label}</a>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                        {col.extra && col.extra.map((ex) => (
+                          <React.Fragment key={ex.title}>
+                            <a href={ex.href} className="mega-menu-title menu--item-title hover:text-red-700" onClick={() => setMegaOpen(false)}>{ex.title}</a>
+                            <ul className="mega-menu-list">
+                              {ex.items.map((item) => (
+                                <li key={item.label} style={{ lineHeight: '1.4em' }}>
+                                  <a className="mega-menu-link" href={item.href} onClick={() => setMegaOpen(false)}>{item.label}</a>
+                                </li>
+                              ))}
+                            </ul>
+                          </React.Fragment>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mega-menu-viewall-wrapper">
+                    <Link
+                      component={RouterLink}
+                      to="/products"
+                      className="mega-menu-viewall"
+                      onClick={() => setMegaOpen(false)}
+                      sx={{
+                        display: 'block',
+                        margin: '2rem auto 0 auto',
+                        background: '#b71c1c',
+                        color: '#fff',
+                        fontWeight: 700,
+                        borderRadius: '6px',
+                        padding: '0.9rem 2.5rem',
+                        textAlign: 'center',
+                        textDecoration: 'none',
+                        border: '2px solid #b71c1c',
+                        transition: 'background 0.2s, color 0.2s, border 0.2s',
+                        fontSize: '1.1rem',
+                        '&:hover': {
+                          background: '#fff',
+                          color: '#111',
+                          border: '2px solid #111',
+                        },
+                      }}
+                    >
+                      View All Products
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+            {/* Other nav links */}
             {navLinks.map((link) => (
               <Link
                 key={link.href}
