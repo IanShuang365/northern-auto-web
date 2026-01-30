@@ -7,7 +7,14 @@ import {
   Box,
   Link,
   Container,
+  Drawer,
+  IconButton,
+  Stack,
+  Collapse,
 } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import '../components/Header.css';
 import logoImage from '../assets/logo.jpg';
 import { SearchBar } from './SearchBar';
@@ -98,6 +105,8 @@ export const Header: React.FC = () => {
 
   // Dropdown state
   const [megaOpen, setMegaOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
   const megaMenuRef = React.useRef<HTMLDivElement>(null);
 
   const handleMegaToggle = () => setMegaOpen(!megaOpen);
@@ -118,6 +127,129 @@ export const Header: React.FC = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [megaOpen]);
+
+  // Mobile drawer content
+  const mobileDrawerContent = (
+    <Box
+      sx={{
+        width: 280,
+        p: 2,
+        bgcolor: '#fff',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+        <Typography variant="h6" sx={{ fontWeight: 700, color: '#d32f2f' }}>
+          Menu
+        </Typography>
+        <IconButton onClick={() => setMobileMenuOpen(false)} size="small">
+          <CloseIcon />
+        </IconButton>
+      </Box>
+
+      <Stack spacing={1} sx={{ overflow: 'auto', flex: 1 }}>
+        {/* Products Menu */}
+        <Box>
+          <Box
+            onClick={() => setExpandedMobileMenu(expandedMobileMenu === 'products' ? null : 'products')}
+            sx={{
+              p: 1.5,
+              cursor: 'pointer',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderRadius: 1,
+              bgcolor: expandedMobileMenu === 'products' ? 'rgba(211, 47, 47, 0.1)' : 'transparent',
+              '&:hover': { bgcolor: 'rgba(211, 47, 47, 0.05)' },
+            }}
+          >
+            <Typography sx={{ fontWeight: 600, color: '#333' }}>Products</Typography>
+            <ExpandMoreIcon sx={{ transform: expandedMobileMenu === 'products' ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }} />
+          </Box>
+          <Collapse in={expandedMobileMenu === 'products'} timeout="auto" unmountOnExit>
+            <Stack spacing={0.5} sx={{ pl: 2, pt: 1 }}>
+              {megaMenuColumns.map((col) => (
+                <Box key={col.title}>
+                  <Link
+                    component={RouterLink}
+                    to={col.href}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setExpandedMobileMenu(null);
+                    }}
+                    sx={{
+                      display: 'block',
+                      py: 0.8,
+                      px: 1,
+                      color: '#d32f2f',
+                      textDecoration: 'none',
+                      fontWeight: 600,
+                      fontSize: '0.9rem',
+                      borderRadius: 0.5,
+                      '&:hover': { bgcolor: 'rgba(211, 47, 47, 0.1)' },
+                    }}
+                  >
+                    {col.title}
+                  </Link>
+                  {col.items && (
+                    <Stack spacing={0.3} sx={{ pl: 1 }}>
+                      {col.items.map((item) => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            setExpandedMobileMenu(null);
+                          }}
+                          sx={{
+                            display: 'block',
+                            py: 0.5,
+                            px: 1,
+                            color: '#666',
+                            textDecoration: 'none',
+                            fontSize: '0.85rem',
+                            borderRadius: 0.5,
+                            '&:hover': { color: '#d32f2f', bgcolor: 'rgba(211, 47, 47, 0.05)' },
+                          }}
+                        >
+                          {item.highlight && <span style={{ color: '#d32f2f', fontWeight: 700 }}>NEW </span>}
+                          {item.label}
+                        </Link>
+                      ))}
+                    </Stack>
+                  )}
+                </Box>
+              ))}
+            </Stack>
+          </Collapse>
+        </Box>
+
+        {/* Other nav links */}
+        {navLinks.map((link) => (
+          <Link
+            key={link.href}
+            component={RouterLink}
+            to={link.href}
+            onClick={() => setMobileMenuOpen(false)}
+            sx={{
+              p: 1.5,
+              color: '#333',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.95rem',
+              borderRadius: 1,
+              display: 'block',
+              '&:hover': { bgcolor: 'rgba(211, 47, 47, 0.1)', color: '#d32f2f' },
+            }}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </Stack>
+    </Box>
+  );
 
   return (
     <AppBar
@@ -204,12 +336,9 @@ export const Header: React.FC = () => {
           {/* Navigation Links and Menu */}
           <Box
             sx={{
-              display: 'flex',
+              display: { xs: 'none', md: 'flex' },
               gap: 4,
               alignItems: 'center',
-              '@media (max-width: 600px)': {
-                gap: 1,
-              },
             }}
           >
             {/* Products Mega Menu - Custom HTML/CSS version */}
@@ -343,8 +472,34 @@ export const Header: React.FC = () => {
             ))}
             <InfoSidebar />
           </Box>
+
+          {/* Mobile Menu Button */}
+          <IconButton
+            onClick={() => setMobileMenuOpen(true)}
+            sx={{
+              display: { xs: 'flex', md: 'none' },
+              color: '#fff',
+              '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.1)' },
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </Container>
+
+      {/* Mobile Drawer Menu */}
+      <Drawer
+        anchor="right"
+        open={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        sx={{
+          '& .MuiDrawer-paper': {
+            width: 280,
+          },
+        }}
+      >
+        {mobileDrawerContent}
+      </Drawer>
     </AppBar>
   );
 };
