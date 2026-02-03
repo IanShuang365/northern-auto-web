@@ -11,6 +11,131 @@
   text-align: center;
 }
 
+/* Swiper Base Styles */
+.swiper {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper-wrapper {
+  display: flex;
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 600px;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.swiper-slide-active {
+  z-index: 1;
+}
+
+/* Swiper Navigation Buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  margin-top: 0;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* Swiper Pagination */
+.swiper-pagination {
+  position: absolute;
+  bottom: 30px !important;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  transition: all 0.3s ease;
+  margin: 0 6px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.swiper-pagination-bullet:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #d32f2f;
+  width: 32px;
+  border-radius: 6px;
+}
+
+/* Carousel Navigation Arrows */
+.carousel-prev,
+.carousel-next {
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .swiper-slide {
+    height: 400px;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 1.2rem;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .carousel-prev Box,
+  .carousel-next Box {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Spec Card Enhancements */
+.spec-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+  border: none;
+  border-left: 5px solid #d32f2f;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.spec-card:hover {
+  box-shadow: 0 8px 20px rgba(211, 47, 47, 0.12);
+}
+
+/* Feature Tabs Container */
 .feature-tabs-container {
   display: flex;
   gap: 0.5rem;
@@ -33,21 +158,19 @@
   font-weight: 700;
 }
 
+/* Benefit Card Enhancements */
 .benefit-card {
-  transition: all 0.3s ease;
-  border-left: 4px solid #d32f2f;
+  background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+  border: none;
+  border-left: 5px solid #d32f2f;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .benefit-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 20px rgba(211, 47, 47, 0.12);
 }
 
-.spec-card {
-  border-left: 3px solid #d32f2f;
-  background-color: #f9f9f9;
-}
-
+/* Made in USA Section */
 .made-in-usa-section {
   position: relative;
   min-height: 400px;
@@ -74,6 +197,12 @@
 .made-in-usa-content {
   position: relative;
   z-index: 2;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 }
 
 @media (max-width: 768px) {

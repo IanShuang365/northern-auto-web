@@ -5,6 +5,7 @@ import product4 from '../assets/product4.jpeg';
 
 export interface ProductData {
   id: string;
+  slug: string;
   title: string;
   shortDescription: string;
   longDescription: string;
@@ -19,6 +20,7 @@ export interface ProductData {
 export const products: ProductData[] = [
   {
     id: '1',
+    slug: 'direct-drive',
     title: 'Professional Wheel Balancer',
     shortDescription: 'With Direct Drive technology for precision balancing',
     longDescription: `Our Professional Wheel Balancer features cutting-edge Direct Drive technology that delivers unmatched precision and consistency. Designed for high-volume shops, this advanced system combines speed with accuracy to reduce customer returns and increase satisfaction.
@@ -54,6 +56,7 @@ With over 78 years of expertise in wheel balancing equipment, we've engineered t
   },
   {
     id: '2',
+    slug: 'cwa-6500',
     title: 'Advanced Wheel Aligner',
     shortDescription: '3D Wheel Alignment System with laser precision',
     longDescription: `Experience next-generation wheel alignment with our Advanced Wheel Aligner. This 3D system uses laser precision technology to ensure perfect wheel geometry every time. Ideal for both domestic and import vehicles.
@@ -89,6 +92,7 @@ The system guides technicians through the alignment process with clear visual fe
   },
   {
     id: '3',
+    slug: 'scissor-lifts',
     title: 'Heavy-Duty Lift System',
     shortDescription: 'For Under Vehicle Services and Alignments',
     longDescription: `Built tough for the most demanding shop environments, our Heavy-Duty Lift System provides safe, reliable access to undercarriage work. With a 12,000 lbs capacity and advanced safety features, this lift delivers consistent performance day after day.
@@ -124,6 +128,7 @@ Safety is engineered into every aspect of this system. From redundant hydraulic 
   },
   {
     id: '4',
+    slug: 'maxx-series',
     title: 'Automatic Tire Changer',
     shortDescription: 'Fast and reliable tire changing equipment',
     longDescription: `Transform your tire service department with our Automatic Tire Changer. This machine automates the tire mounting and demounting process, dramatically increasing throughput while reducing technician fatigue and error.
@@ -160,6 +165,7 @@ Perfect for high-volume tire shops, the intuitive controls and robust constructi
   // --- Additional Sample Products ---
   {
     id: '5',
+    slug: 'e900',
     title: 'Digital Air Compressor',
     shortDescription: 'High-efficiency compressor for all tire types',
     longDescription: 'This digital air compressor delivers fast, accurate inflation for cars, trucks, and motorcycles. Its compact design and digital controls make it a must-have for any shop.',
@@ -190,6 +196,7 @@ Perfect for high-volume tire shops, the intuitive controls and robust constructi
   },
   {
     id: '6',
+    slug: 'shop-press',
     title: 'Shop Press 20-Ton',
     shortDescription: 'Heavy-duty hydraulic press for shop use',
     longDescription: 'The 20-ton shop press is perfect for bending, pressing, and straightening metal parts. Its robust frame and easy operation make it ideal for any automotive workshop.',
@@ -220,6 +227,7 @@ Perfect for high-volume tire shops, the intuitive controls and robust constructi
   },
   {
     id: '7',
+    slug: 'battery-tester',
     title: 'Battery Tester Pro',
     shortDescription: 'Accurate battery diagnostics in seconds',
     longDescription: 'Quickly test and diagnose battery health with this professional-grade tester. Suitable for 6V and 12V batteries, with easy-to-read digital display.',
@@ -249,6 +257,7 @@ Perfect for high-volume tire shops, the intuitive controls and robust constructi
   },
   {
     id: '8',
+    slug: 'tool-cart',
     title: 'Mobile Tool Cart',
     shortDescription: 'Organize and move tools with ease',
     longDescription: 'This mobile tool cart features three shelves, locking casters, and a sturdy handle. Keep your essential tools organized and always within reach.',
@@ -277,8 +286,237 @@ Perfect for high-volume tire shops, the intuitive controls and robust constructi
     ],
     category: 'Shop Equipment',
   },
+  // Additional products for mega menu
+  {
+    id: '9',
+    slug: 'maxx-series',
+    title: 'Maxx Series Tire Changer',
+    shortDescription: 'Premium automatic tire changer for high-volume shops',
+    longDescription: 'The Maxx Series Tire Changer is engineered for speed and reliability. Perfect for busy shops that need consistent performance throughout the day.',
+    image: product1,
+    price: '$5,999',
+    specifications: ['Wheel Size: 10-28 inches', 'Automatic operation', 'Quick-change spindle', 'Heavy-duty construction'],
+    features: ['High-speed operation', 'Dual-clutch system', 'Emergency stop', 'Digital controls'],
+    benefits: ['Increases productivity', 'Reduces labor costs', 'Durable construction'],
+    category: 'Tire Service Equipment',
+  },
+  {
+    id: '10',
+    slug: 'rc-series',
+    title: 'RC Series Tire Changer',
+    shortDescription: 'Reliable tire changer for mid-volume shops',
+    longDescription: 'The RC Series provides solid performance and durability for shops looking for a cost-effective tire changing solution.',
+    image: product1,
+    price: '$3,999',
+    specifications: ['Wheel Size: 10-24 inches', 'Manual assist operation', 'Durable frame'],
+    features: ['Easy operation', 'Low maintenance', 'Affordable'],
+    benefits: ['Good value', 'Simple controls', 'Reliable performance'],
+    category: 'Tire Service Equipment',
+  },
+  {
+    id: '11',
+    slug: 'c-series',
+    title: 'C Series Tire Changer',
+    shortDescription: 'Entry-level tire changer for starter shops',
+    longDescription: 'The C Series is perfect for shops just starting out or looking for a compact tire changing solution.',
+    image: product1,
+    price: '$2,499',
+    specifications: ['Wheel Size: 12-22 inches', 'Manual operation', 'Compact design'],
+    features: ['Space-saving', 'Easy to use', 'Budget-friendly'],
+    benefits: ['Affordable', 'Takes up less space', 'Good starter option'],
+    category: 'Tire Service Equipment',
+  },
+  {
+    id: '12',
+    slug: 'tilt-back',
+    title: 'Tilt Back Tire Changer',
+    shortDescription: 'Innovative tilt-back design for easy access',
+    longDescription: 'Our tilt-back design makes mounting and demounting easier than ever with improved ergonomics.',
+    image: product1,
+    price: '$4,499',
+    specifications: ['Wheel Size: 10-26 inches', 'Tilt-back feature', 'Ergonomic design'],
+    features: ['Easy access', 'Tilt mechanism', 'Smooth operation'],
+    benefits: ['Reduces technician strain', 'Better access', 'Faster work'],
+    category: 'Tire Service Equipment',
+  },
+  {
+    id: '13',
+    slug: 'chd-series',
+    title: 'CHD Series Heavy-Duty Tire Changer',
+    shortDescription: 'Heavy-duty tire changer for truck and commercial use',
+    longDescription: 'Built tough for commercial and heavy-duty tire applications. The CHD Series handles the toughest jobs.',
+    image: product4,
+    price: '$7,999',
+    specifications: ['Max Wheel Size: 32 inches', 'Heavy-duty construction', 'High torque', 'Commercial grade'],
+    features: ['Robust build', 'High power', 'Professional grade'],
+    benefits: ['Handles large tires', 'Built to last', 'Perfect for commercial shops'],
+    category: 'Tire Service Equipment',
+  },
+  {
+    id: '14',
+    slug: 'hit-series',
+    title: 'HIT Series Heavy-Duty Tire Changer',
+    shortDescription: 'Ultra-heavy-duty tire changer for extreme applications',
+    longDescription: 'The HIT Series is our most robust tire changer for the most demanding heavy-duty applications.',
+    image: product4,
+    price: '$8,999',
+    specifications: ['Max Wheel Size: 35 inches', 'Ultra heavy-duty', 'Maximum torque'],
+    features: ['Maximum power', 'Industrial-grade', 'Extended durability'],
+    benefits: ['Handles largest tires', 'Long service life', 'Best for industrial use'],
+    category: 'Tire Service Equipment',
+  },
+  {
+    id: '15',
+    slug: 'space-saving',
+    title: 'Space Saving Wheel Balancer',
+    shortDescription: 'Compact wheel balancer for shops with limited space',
+    longDescription: 'Perfect for shops with tight space constraints, our space-saving design doesn\'t compromise on performance.',
+    image: product2,
+    price: '$3,499',
+    specifications: ['Compact footprint', 'Direct drive', 'High accuracy'],
+    features: ['Space-efficient', 'Precision balancing', 'Quick setup'],
+    benefits: ['Saves shop space', 'High precision', 'Easy to use'],
+    category: 'Measurement & Diagnostics',
+  },
+  {
+    id: '16',
+    slug: 'hd-6450',
+    title: 'HD 6450 Heavy-Duty Wheel Balancer',
+    shortDescription: 'Heavy-duty wheel balancer for truck wheels',
+    longDescription: 'Our HD 6450 is specifically designed for heavy-duty truck wheel balancing with maximum capacity and accuracy.',
+    image: product2,
+    price: '$6,499',
+    specifications: ['Max Wheel Weight: 100 lbs', 'Heavy-duty bearing', 'Truck-rated'],
+    features: ['Large wheel capacity', 'Heavy-duty bearing', 'Professional grade'],
+    benefits: ['Perfect for trucks', 'Maximum capacity', 'Superior accuracy'],
+    category: 'Measurement & Diagnostics',
+  },
+  {
+    id: '17',
+    slug: '2-post-lifts',
+    title: '2-Post Lift System',
+    shortDescription: 'Standard 2-post lift for general service',
+    longDescription: 'Our reliable 2-post lift is perfect for general shop use with excellent accessibility to the undercarriage.',
+    image: product3,
+    price: '$5,999',
+    specifications: ['Load capacity: 10,000 lbs', 'Dual hydraulic cylinders', 'Safety locks'],
+    features: ['Standard height', 'Good wheel path', 'Symmetric design'],
+    benefits: ['Works for most vehicles', 'Great accessibility', 'Proven reliability'],
+    category: 'Lifting Equipment',
+  },
+  {
+    id: '18',
+    slug: '4-post-lifts',
+    title: '4-Post Lift System',
+    shortDescription: 'Stationary 4-post lift for storage and service',
+    longDescription: 'Our 4-post lift combines the safety of a stationary platform with the ability to service vehicles.',
+    image: product3,
+    price: '$7,499',
+    specifications: ['Load capacity: 12,000 lbs per post', 'Stationary platform', 'Four-point support'],
+    features: ['Extra stability', 'Storage function', 'Safe parking platform'],
+    benefits: ['Maximum safety', 'Can store vehicles', 'Perfect for parking'],
+    category: 'Lifting Equipment',
+  },
+  {
+    id: '19',
+    slug: 'low-profile-lifts',
+    title: 'Low-Profile Lift System',
+    shortDescription: 'Low-profile lift for garages with low ceilings',
+    longDescription: 'Our low-profile design is perfect for garages and shops with limited ceiling height.',
+    image: product3,
+    price: '$6,999',
+    specifications: ['Load capacity: 9,000 lbs', 'Low rise height', 'Compact design'],
+    features: ['Low ceiling clearance', 'Compact footprint', 'Easy operation'],
+    benefits: ['Works in tight spaces', 'No structural mods needed', 'Space-saving'],
+    category: 'Lifting Equipment',
+  },
+  {
+    id: '20',
+    slug: 'mobile-columns',
+    title: 'Mobile Lift Columns',
+    shortDescription: 'Movable lift columns for flexible lifting',
+    longDescription: 'Our mobile lift columns can be positioned anywhere in your shop for maximum flexibility.',
+    image: product3,
+    price: '$8,499',
+    specifications: ['Load capacity per column: 5,500 lbs', 'Wheeled base', 'Hydraulic synchronized'],
+    features: ['Mobile design', 'Synchronized lifting', 'Flexible placement'],
+    benefits: ['Can be moved', 'Flexible workspace', 'Professional grade'],
+    category: 'Lifting Equipment',
+  },
+  {
+    id: '21',
+    slug: 'maxx-air-compressor',
+    title: 'Maxx Air Compressor',
+    shortDescription: 'High-capacity air compressor for busy shops',
+    longDescription: 'Our Maxx air compressor delivers the volume and pressure your shop needs for continuous operation.',
+    image: product1,
+    price: '$2,299',
+    specifications: ['Horsepower: 5 HP', 'Tank: 60 gallons', 'Max pressure: 150 PSI'],
+    features: ['High CFM output', 'Durable tank', 'Quiet operation'],
+    benefits: ['Reliable operation', 'Long-lasting', 'Powers multiple tools'],
+    category: 'Shop Equipment',
+  },
+  {
+    id: '22',
+    slug: 'cwa-6000',
+    title: 'CWA 6000 Wheel Aligner',
+    shortDescription: 'Professional 3D wheel alignment system',
+    longDescription: 'The CWA 6000 offers professional-grade alignment with advanced 3D technology.',
+    image: product2,
+    price: '$11,499',
+    specifications: ['3D laser measurement', '50,000+ vehicle database', 'Real-time guidance'],
+    features: ['Advanced sensors', 'Cloud connectivity', 'Easy operation'],
+    benefits: ['Fast alignment', 'High accuracy', 'Professional results'],
+    category: 'Alignment Systems',
+  },
+  {
+    id: '23',
+    slug: 'tread-depth-scanner',
+    title: 'Tread Depth Scanner',
+    shortDescription: 'Digital tread depth measurement tool',
+    longDescription: 'Accurately measure tire tread depth with our digital scanner for customer safety and compliance.',
+    image: product2,
+    price: '$299',
+    specifications: ['Digital display', 'Metric/inch mode', 'Battery powered'],
+    features: ['Easy reading', 'Portable', 'Fast measurement'],
+    benefits: ['Accurate readings', 'Professional tool', 'Customer confidence'],
+    category: 'Measurement & Diagnostics',
+  },
+  {
+    id: '24',
+    slug: 'bodyguard',
+    title: 'Bodyguard Vehicle Protection System',
+    shortDescription: 'Paint protection system for vehicle surfaces',
+    longDescription: 'Our bodyguard system protects vehicle paint from scratches, dings, and environmental damage.',
+    image: product2,
+    price: '$499',
+    specifications: ['Clear protective film', 'Adhesive backing', 'Easy application'],
+    features: ['Invisible protection', 'Durable', 'Self-healing film'],
+    benefits: ['Protects paint', 'Maintains resale value', 'Easy installation'],
+    category: 'Shop Equipment',
+  },
+  {
+    id: '25',
+    slug: 'alignment-check',
+    title: 'Alignment Check Tool',
+    shortDescription: 'Quick alignment verification tool',
+    longDescription: 'Our alignment check tool provides quick verification of wheel alignment between full alignments.',
+    image: product2,
+    price: '$699',
+    specifications: ['Quick check capability', 'Portable design', 'Digital readout'],
+    features: ['Fast verification', 'Portable', 'Accurate'],
+    benefits: ['Saves time', 'Customer confidence', 'Easy to use'],
+    category: 'Measurement & Diagnostics',
+  },
 ];
 
+
 export const getProductById = (id: string): ProductData | undefined => {
-  return products.find(product => product.id === id);
+  // Try to find by numeric ID first
+  let product = products.find(product => product.id === id);
+  // If not found, try to find by slug
+  if (!product) {
+    product = products.find(product => product.slug === id);
+  }
+  return product;
 };

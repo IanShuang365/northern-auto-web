@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -9,6 +9,8 @@ import {
   Card,
   CardContent,
 } from '@mui/material';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { getProductById } from '../data/products';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
@@ -18,7 +20,31 @@ export const ProductDetail: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
   const navigate = useNavigate();
   const product = productId ? getProductById(productId) : undefined;
-  const [activeTab, setActiveTab] = useState(0);
+
+  // Product variants for carousel
+  const productVariants = product ? [
+    {
+      title: product.title,
+      subtitle: product.shortDescription,
+      description: 'Standard Edition - Proven Performance',
+      image: product.image,
+      badge: 'POPULAR',
+    },
+    {
+      title: `${product.title} - Pro Series`,
+      subtitle: 'Advanced features for professional shops',
+      description: 'Enhanced capabilities with professional-grade components',
+      image: product.image,
+      badge: 'PREMIUM',
+    },
+    {
+      title: `${product.title} - Industrial Grade`,
+      subtitle: 'Heavy-duty variant for demanding applications',
+      description: 'Maximum performance and durability for industrial use',
+      image: product.image,
+      badge: 'INDUSTRIAL',
+    },
+  ] : [];
 
   if (!product) {
     return (
@@ -49,446 +75,495 @@ export const ProductDetail: React.FC = () => {
     <>
       <Header />
 
-      {/* Hero Section with Background */}
+      {/* Hero Section with Carousel */}
       <Box
         sx={{
           position: 'relative',
           minHeight: '600px',
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${product.image})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          color: '#fff',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          textAlign: 'center',
+          overflow: 'hidden',
         }}
       >
-        <Box sx={{ maxWidth: 800 }}>
-          <Typography
-            variant="h2"
-            sx={{
-              fontWeight: 800,
-              mb: 2,
-              fontSize: { xs: '2rem', md: '3.5rem' },
-              textShadow: '0 2px 8px rgba(0,0,0,0.3)',
-            }}
-          >
-            {product.title}
-          </Typography>
-          <Typography
-            variant="h5"
-            sx={{
-              fontStyle: 'italic',
-              fontSize: '1.3rem',
-              mb: 3,
-              textShadow: '0 1px 4px rgba(0,0,0,0.3)',
-            }}
-          >
-            {product.shortDescription}
-          </Typography>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{
-              bgcolor: '#d32f2f',
-              px: 4,
-              py: 1.5,
-              fontSize: '1rem',
-              '&:hover': { bgcolor: '#b71c1c' },
-            }}
-          >
-            Contact Us
-          </Button>
-        </Box>
-      </Box>
-
-      {/* Promise Section */}
-      <Box sx={{ py: 8, bgcolor: '#f5f5f5' }}>
-        <Container maxWidth="lg">
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: 800,
-              mb: 3,
-              fontSize: { xs: '2rem', md: '2.5rem' },
-              color: '#1a1a1a',
-            }}
-          >
-            The Promise
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              color: '#555',
-              lineHeight: 1.8,
-              fontSize: '1.1rem',
-              maxWidth: 800,
-            }}
-          >
-            {product.longDescription}
-          </Typography>
-        </Container>
-      </Box>
-
-      {/* Features Tab Section */}
-      <Box sx={{ py: 8, bgcolor: '#fff' }}>
-        <Container maxWidth="lg">
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: 800,
-              mb: 1,
-              textAlign: 'center',
-              fontSize: { xs: '2rem', md: '2.5rem' },
-              color: '#1a1a1a',
-            }}
-          >
-            Key Features & Benefits
-          </Typography>
-          <Box
-            sx={{
-              width: 60,
-              height: 4,
-              bgcolor: '#d32f2f',
-              borderRadius: 2,
-              mx: 'auto',
-              mb: 6,
-            }}
-          />
-
-          {/* Tab Buttons with Bottom Highlighter */}
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: 0,
-              mb: 6,
-              overflowX: 'auto',
-              borderBottom: '2px solid #e0e0e0',
-              '&::-webkit-scrollbar': {
-                height: '6px',
-              },
-              '&::-webkit-scrollbar-track': {
-                background: '#f1f1f1',
-              },
-              '&::-webkit-scrollbar-thumb': {
-                background: '#d32f2f',
-                borderRadius: '3px',
-              },
-            }}
-          >
-            {product.features.map((feature, index) => (
-              <Button
-                key={index}
-                onClick={() => setActiveTab(index)}
-                sx={{
-                  px: 2,
-                  py: 1.5,
-                  fontWeight: activeTab === index ? 700 : 500,
-                  color: activeTab === index ? '#d32f2f' : '#666',
-                  bgcolor: 'transparent',
-                  borderRadius: 0,
-                  fontSize: { xs: '0.9rem', md: '1rem' },
-                  whiteSpace: 'nowrap',
-                  transition: 'all 0.3s ease',
-                  borderBottom: activeTab === index ? '3px solid #d32f2f' : '3px solid transparent',
-                  mb: '-2px',
-                  textTransform: 'none',
-                  '&:hover': {
-                    color: '#d32f2f',
-                    bgcolor: 'rgba(211, 47, 47, 0.05)',
-                  },
-                }}
-              >
-                {feature}
-              </Button>
-            ))}
-          </Box>
-
-          {/* Feature Display with Animation */}
-          <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={6}>
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation]}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+          }}
+          navigation={{
+            nextEl: '.carousel-next',
+            prevEl: '.carousel-prev',
+          }}
+          style={{
+            width: '100%',
+            height: '600px',
+          }}
+        >
+          {productVariants.map((variant, index) => (
+            <SwiperSlide key={index}>
               <Box
                 sx={{
                   position: 'relative',
-                  animation: 'fadeIn 0.4s ease-in',
-                  '@keyframes fadeIn': {
-                    from: { opacity: 0, transform: 'translateX(-10px)' },
-                    to: { opacity: 1, transform: 'translateX(0)' },
-                  },
+                  width: '100%',
+                  height: '100%',
+                  backgroundImage: `linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(211, 47, 47, 0.5)), url(${variant.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                  color: '#fff',
+                  flexDirection: 'column',
+                  gap: 2,
                 }}
               >
                 <Box
-                  component="img"
-                  src={product.image}
-                  alt={product.features[activeTab]}
                   sx={{
-                    width: '100%',
-                    height: 'auto',
-                    maxHeight: 450,
-                    objectFit: 'contain',
-                    borderRadius: '12px',
-                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
+                    display: 'inline-block',
+                    bgcolor: 'rgba(211, 47, 47, 0.8)',
+                    color: '#fff',
+                    px: 3,
+                    py: 0.75,
+                    borderRadius: '50px',
+                    fontSize: '0.875rem',
+                    fontWeight: 700,
+                    letterSpacing: '1px',
+                    mb: 1,
                   }}
+                >
+                  {variant.badge}
+                </Box>
+                <Box sx={{ maxWidth: 800 }}>
+                  <Typography
+                    variant="h2"
+                    sx={{
+                      fontWeight: 800,
+                      mb: 2,
+                      fontSize: { xs: '2rem', md: '3.5rem' },
+                      textShadow: '0 4px 12px rgba(0,0,0,0.5)',
+                    }}
+                  >
+                    {variant.title}
+                  </Typography>
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      fontStyle: 'italic',
+                      fontSize: '1.3rem',
+                      mb: 2,
+                      textShadow: '0 2px 8px rgba(0,0,0,0.5)',
+                    }}
+                  >
+                    {variant.subtitle}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: '1.1rem',
+                      mb: 3,
+                      textShadow: '0 2px 8px rgba(0,0,0,0.5)',
+                      fontWeight: 500,
+                    }}
+                  >
+                    {variant.description}
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    sx={{
+                      bgcolor: '#d32f2f',
+                      px: 4,
+                      py: 1.5,
+                      fontSize: '1rem',
+                      '&:hover': { bgcolor: '#b71c1c' },
+                      boxShadow: '0 4px 12px rgba(211, 47, 47, 0.3)',
+                    }}
+                  >
+                    Contact Us
+                  </Button>
+                </Box>
+              </Box>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        {/* Navigation Arrows */}
+        <Box
+          className="carousel-prev"
+          sx={{
+            position: 'absolute',
+            left: 20,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            zIndex: 10,
+            cursor: 'pointer',
+          }}
+        >
+          <Box
+            sx={{
+              width: 50,
+              height: 50,
+              borderRadius: '50%',
+              bgcolor: 'rgba(211, 47, 47, 0.8)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#fff',
+              fontSize: '1.5rem',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                bgcolor: '#d32f2f',
+                transform: 'scale(1.1)',
+              },
+            }}
+          >
+            ←
+          </Box>
+        </Box>
+        <Box
+          className="carousel-next"
+          sx={{
+            position: 'absolute',
+            right: 20,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            zIndex: 10,
+            cursor: 'pointer',
+          }}
+        >
+          <Box
+            sx={{
+              width: 50,
+              height: 50,
+              borderRadius: '50%',
+              bgcolor: 'rgba(211, 47, 47, 0.8)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#fff',
+              fontSize: '1.5rem',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                bgcolor: '#d32f2f',
+                transform: 'scale(1.1)',
+              },
+            }}
+          >
+            →
+          </Box>
+        </Box>
+      </Box>
+
+      {/* Product Description Section */}
+      <Container maxWidth="lg" sx={{ py: 10 }}>
+        <Box sx={{ mb: 10 }}>
+          <Box
+            sx={{
+              position: 'relative',
+              pb: 3,
+              mb: 4,
+            }}
+          >
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: 800,
+                color: '#333',
+                mb: 1,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 2,
+              }}
+            >
+              <Box
+                sx={{
+                  width: 6,
+                  height: 40,
+                  bgcolor: '#d32f2f',
+                  borderRadius: '3px',
+                }}
+              />
+              Product Overview
+            </Typography>
+            <Box
+              sx={{
+                width: 80,
+                height: 4,
+                background: 'linear-gradient(90deg, #d32f2f 0%, #ff6b6b 100%)',
+                borderRadius: '2px',
+              }}
+            />
+          </Box>
+          <Box
+            sx={{
+              bgcolor: '#f8f9fa',
+              p: 5,
+              borderRadius: 3,
+              borderLeft: '5px solid #d32f2f',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+            }}
+          >
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: '1.15rem',
+                lineHeight: 2,
+                color: '#555',
+                fontWeight: 500,
+              }}
+            >
+              {product.longDescription}
+            </Typography>
+          </Box>
+        </Box>
+
+        {/* Video Section */}
+        <Box sx={{ mb: 12 }}>
+          <Box
+            sx={{
+              position: 'relative',
+              pb: 3,
+              mb: 4,
+            }}
+          >
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: 800,
+                color: '#333',
+                mb: 1,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 2,
+              }}
+            >
+              <Box
+                sx={{
+                  width: 6,
+                  height: 40,
+                  bgcolor: '#d32f2f',
+                  borderRadius: '3px',
+                }}
+              />
+              Product Video
+            </Typography>
+            <Box
+              sx={{
+                width: 80,
+                height: 4,
+                background: 'linear-gradient(90deg, #d32f2f 0%, #ff6b6b 100%)',
+                borderRadius: '2px',
+              }}
+            />
+          </Box>
+          <Grid container spacing={4} alignItems="center">
+            <Grid item xs={12} md={8}>
+              <Box
+                sx={{
+                  position: 'relative',
+                  width: '100%',
+                  paddingBottom: '56.25%',
+                  height: 0,
+                  overflow: 'hidden',
+                  borderRadius: 2,
+                  boxShadow: '0 12px 40px rgba(211, 47, 47, 0.15)',
+                  bgcolor: '#000',
+                  '& iframe': {
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    border: 'none',
+                  },
+                }}
+              >
+                {/* YouTube Video Embed */}
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/UVid2vASCWQ"
+                  title="Product Video"
+                  allowFullScreen
+                  loading="lazy"
                 />
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
-              <Box
-                sx={{
-                  animation: 'fadeIn 0.4s ease-in',
-                  '@keyframes fadeIn': {
-                    from: { opacity: 0, transform: 'translateX(10px)' },
-                    to: { opacity: 1, transform: 'translateX(0)' },
-                  },
-                }}
-              >
-                <Box
+            <Grid item xs={12} md={4}>
+              <Box>
+                <Typography
+                  variant="h5"
                   sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 2,
-                    mb: 3,
+                    fontWeight: 700,
+                    color: '#333',
+                    mb: 2,
+                    fontSize: '1.3rem',
                   }}
                 >
-                  <Box
-                    sx={{
-                      width: 50,
-                      height: 50,
-                      bgcolor: '#d32f2f',
-                      color: '#fff',
-                      borderRadius: '10px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '1.8rem',
-                      fontWeight: 800,
-                    }}
-                  >
-                    {activeTab + 1}
-                  </Box>
-                  <Typography
-                    variant="h4"
-                    sx={{
-                      fontWeight: 800,
-                      color: '#1a1a1a',
-                      fontSize: { xs: '1.4rem', md: '1.8rem' },
-                    }}
-                  >
-                    {product.features[activeTab]}
-                  </Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    width: 40,
-                    height: 4,
-                    bgcolor: '#d32f2f',
-                    borderRadius: 2,
-                    mb: 3,
-                  }}
-                />
-
+                  See It In Action
+                </Typography>
                 <Typography
                   variant="body1"
                   sx={{
                     color: '#555',
-                    lineHeight: 1.8,
-                    fontSize: '1.05rem',
                     mb: 3,
+                    lineHeight: 1.8,
+                    fontSize: '1rem',
                   }}
                 >
-                  {product.benefits[activeTab] || 'This feature is designed to improve your workflow and enhance productivity.'}
+                  Watch our comprehensive product demonstration video to see all the features and capabilities in action. This video will give you a complete understanding of how our product works and its key benefits.
                 </Typography>
-
-                {/* Feature Highlights */}
-                <Box sx={{ mb: 4 }}>
-                  <Typography
-                    sx={{
-                      fontWeight: 700,
-                      color: '#333',
-                      mb: 2,
-                      fontSize: '0.95rem',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px',
-                    }}
-                  >
-                    Key Benefits:
-                  </Typography>
-                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                    {[
-                      'Increased efficiency and speed',
-                      'Improved accuracy and precision',
-                      'Reduced maintenance costs',
-                    ].map((item, idx) => (
-                      <Box
-                        key={idx}
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 2,
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            width: 6,
-                            height: 6,
-                            bgcolor: '#d32f2f',
-                            borderRadius: '50%',
-                          }}
-                        />
-                        <Typography
-                          sx={{
-                            color: '#666',
-                            fontSize: '0.95rem',
-                          }}
-                        >
-                          {item}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </Box>
-                </Box>
-
-                <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-                  <Button
-                    variant="contained"
-                    sx={{
-                      bgcolor: '#d32f2f',
-                      '&:hover': { bgcolor: '#b71c1c' },
-                    }}
-                  >
-                    Learn More
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    sx={{
-                      borderColor: '#d32f2f',
-                      color: '#d32f2f',
-                      '&:hover': { bgcolor: 'rgba(211, 47, 47, 0.05)' },
-                    }}
-                  >
-                    Request Demo
-                  </Button>
-                </Box>
-              </Box>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* Benefits Grid Section */}
-      <Box sx={{ py: 8, bgcolor: '#fafafa' }}>
-        <Container maxWidth="lg">
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: 800,
-              mb: 1,
-              textAlign: 'center',
-              fontSize: { xs: '2rem', md: '2.5rem' },
-              color: '#1a1a1a',
-            }}
-          >
-            Why Choose {product.title}?
-          </Typography>
-          <Box
-            sx={{
-              width: 60,
-              height: 4,
-              bgcolor: '#d32f2f',
-              borderRadius: 2,
-              mx: 'auto',
-              mb: 6,
-            }}
-          />
-          <Grid container spacing={3}>
-            {product.benefits.map((benefit, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card
-                  sx={{
-                    height: '100%',
-                    borderLeft: '6px solid #d32f2f',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      top: 0,
-                      right: 0,
-                      width: 100,
-                      height: 100,
-                      bgcolor: 'rgba(211, 47, 47, 0.05)',
-                      borderRadius: '50%',
-                      transform: 'translate(30%, -30%)',
-                    },
-                    '&:hover': {
-                      boxShadow: '0 8px 24px rgba(211, 47, 47, 0.15)',
-                      transform: 'translateY(-8px)',
-                      borderLeftColor: '#b71c1c',
-                    },
-                  }}
-                >
-                  <CardContent sx={{ position: 'relative', zIndex: 1 }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
                     <Box
                       sx={{
-                        width: 45,
-                        height: 45,
-                        bgcolor: '#ffeaea',
-                        borderRadius: '10px',
+                        width: 24,
+                        height: 24,
+                        borderRadius: '50%',
+                        bgcolor: '#d32f2f',
+                        color: '#fff',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        mb: 2,
-                        fontSize: '1.5rem',
+                        flexShrink: 0,
+                        fontSize: '0.9rem',
+                        fontWeight: 700,
+                        mt: 0.3,
                       }}
                     >
                       ✓
                     </Box>
                     <Typography
-                      variant="body1"
+                      variant="body2"
                       sx={{
-                        color: '#333',
-                        fontWeight: 600,
-                        lineHeight: 1.6,
-                        fontSize: '1rem',
+                        color: '#555',
+                        fontWeight: 500,
                       }}
                     >
-                      {benefit}
+                      Complete feature overview
                     </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
+                  </Box>
+                  <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
+                    <Box
+                      sx={{
+                        width: 24,
+                        height: 24,
+                        borderRadius: '50%',
+                        bgcolor: '#d32f2f',
+                        color: '#fff',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                        fontSize: '0.9rem',
+                        fontWeight: 700,
+                        mt: 0.3,
+                      }}
+                    >
+                      ✓
+                    </Box>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: '#555',
+                        fontWeight: 500,
+                      }}
+                    >
+                      Installation & setup guide
+                    </Typography>
+                  </Box>
+                  <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
+                    <Box
+                      sx={{
+                        width: 24,
+                        height: 24,
+                        borderRadius: '50%',
+                        bgcolor: '#d32f2f',
+                        color: '#fff',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                        fontSize: '0.9rem',
+                        fontWeight: 700,
+                        mt: 0.3,
+                      }}
+                    >
+                      ✓
+                    </Box>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: '#555',
+                        fontWeight: 500,
+                      }}
+                    >
+                      Real-world use cases
+                    </Typography>
+                  </Box>
+                </Box>
+              </Box>
+            </Grid>
           </Grid>
-        </Container>
-      </Box>
+        </Box>
 
-      {/* Specifications Section */}
-      <Box sx={{ py: 8, bgcolor: '#fff' }}>
-        <Container maxWidth="lg">
-          <Typography
-            variant="h3"
+        {/* Specifications Section */}
+        <Box sx={{ mb: 12 }}>
+          <Box
             sx={{
-              fontWeight: 800,
-              mb: 6,
-              textAlign: 'center',
-              fontSize: { xs: '2rem', md: '2.5rem' },
-              color: '#1a1a1a',
+              position: 'relative',
+              pb: 3,
+              mb: 4,
             }}
           >
-            Technical Specifications
-          </Typography>
-          <Grid container spacing={2}>
-            {product.specifications.map((spec, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: 800,
+                color: '#333',
+                mb: 1,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 2,
+              }}
+            >
+              <Box
+                sx={{
+                  width: 6,
+                  height: 40,
+                  bgcolor: '#d32f2f',
+                  borderRadius: '3px',
+                }}
+              />
+              Technical Specifications
+            </Typography>
+            <Box
+              sx={{
+                width: 80,
+                height: 4,
+                background: 'linear-gradient(90deg, #d32f2f 0%, #ff6b6b 100%)',
+                borderRadius: '2px',
+              }}
+            />
+          </Box>
+          <Grid container spacing={3}>
+            {product.specifications.map((spec, idx) => (
+              <Grid item xs={12} sm={6} md={4} key={idx}>
                 <Card
+                  className="spec-card"
                   sx={{
-                    bgcolor: '#f9f9f9',
-                    borderLeft: '3px solid #d32f2f',
+                    height: '100%',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    '&:hover': {
+                      transform: 'translateY(-8px)',
+                      boxShadow: '0 12px 24px rgba(211, 47, 47, 0.15)',
+                    },
                   }}
                 >
                   <CardContent>
@@ -497,6 +572,7 @@ export const ProductDetail: React.FC = () => {
                       sx={{
                         color: '#555',
                         fontWeight: 500,
+                        fontSize: '0.95rem',
                         lineHeight: 1.6,
                       }}
                     >
@@ -507,122 +583,336 @@ export const ProductDetail: React.FC = () => {
               </Grid>
             ))}
           </Grid>
-        </Container>
-      </Box>
+        </Box>
 
-      {/* Call to Action Section */}
-      <Box
-        sx={{
-          bgcolor: '#d32f2f',
-          color: '#fff',
-          py: 8,
-          textAlign: 'center',
-        }}
-      >
-        <Container maxWidth="lg">
-          <Typography
-            variant="h3"
+        {/* Features Section */}
+        <Box sx={{ mb: 12 }}>
+          <Box
             sx={{
-              mb: 2,
-              fontWeight: 800,
-              fontSize: { xs: '1.8rem', md: '2.5rem' },
-            }}
-          >
-            Ready to Equip Your Shop?
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
+              position: 'relative',
+              pb: 3,
               mb: 4,
-              fontSize: '1.1rem',
-              maxWidth: 600,
-              mx: 'auto',
             }}
           >
-            Contact our sales team today to learn more about {product.title} and explore flexible financing options.
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Button
-              variant="contained"
-              size="large"
+            <Typography
+              variant="h3"
               sx={{
-                bgcolor: '#fff',
-                color: '#d32f2f',
-                px: 4,
-                py: 1.5,
-                fontWeight: 700,
-                fontSize: '1rem',
-                '&:hover': { bgcolor: '#f0f0f0' },
+                fontWeight: 800,
+                color: '#333',
+                mb: 1,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 2,
               }}
             >
-              Get Started
-            </Button>
-            <Button
-              variant="outlined"
-              size="large"
+              <Box
+                sx={{
+                  width: 6,
+                  height: 40,
+                  bgcolor: '#d32f2f',
+                  borderRadius: '3px',
+                }}
+              />
+              Key Features
+            </Typography>
+            <Box
               sx={{
-                borderColor: '#fff',
-                color: '#fff',
-                px: 4,
-                py: 1.5,
-                fontWeight: 700,
-                fontSize: '1rem',
-                '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.1)' },
+                width: 80,
+                height: 4,
+                background: 'linear-gradient(90deg, #d32f2f 0%, #ff6b6b 100%)',
+                borderRadius: '2px',
               }}
-            >
-              Call: 1-647-886-2259
-            </Button>
+            />
           </Box>
-        </Container>
-      </Box>
+          <Grid container spacing={3}>
+            {product.features.map((feature, idx) => (
+              <Grid item xs={12} sm={6} md={4} key={idx}>
+                <Card
+                  sx={{
+                    height: '100%',
+                    border: 'none',
+                    background: 'linear-gradient(135deg, #fff 0%, #f8f9fa 100%)',
+                    borderTop: '4px solid #d32f2f',
+                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    '&:before': {
+                      content: '""',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: 'linear-gradient(135deg, rgba(211, 47, 47, 0) 0%, rgba(211, 47, 47, 0.05) 100%)',
+                      pointerEvents: 'none',
+                    },
+                    '&:hover': {
+                      transform: 'translateY(-8px)',
+                      boxShadow: '0 12px 32px rgba(211, 47, 47, 0.2)',
+                    },
+                  }}
+                >
+                  <CardContent>
+                    <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'flex-start' }}>
+                      <Box
+                        sx={{
+                          width: 24,
+                          height: 24,
+                          borderRadius: '50%',
+                          bgcolor: '#d32f2f',
+                          color: '#fff',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                          fontSize: '0.9rem',
+                          fontWeight: 700,
+                          mt: 0.2,
+                        }}
+                      >
+                        ✓
+                      </Box>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          fontWeight: 600,
+                          color: '#333',
+                          fontSize: '0.95rem',
+                          lineHeight: 1.6,
+                        }}
+                      >
+                        {feature}
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
 
-      {/* Made in USA Section */}
+        {/* Benefits Section */}
+        <Box sx={{ mb: 12 }}>
+          <Box
+            sx={{
+              position: 'relative',
+              pb: 3,
+              mb: 4,
+            }}
+          >
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: 800,
+                color: '#333',
+                mb: 1,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 2,
+              }}
+            >
+              <Box
+                sx={{
+                  width: 6,
+                  height: 40,
+                  bgcolor: '#d32f2f',
+                  borderRadius: '3px',
+                }}
+              />
+              Business Benefits
+            </Typography>
+            <Box
+              sx={{
+                width: 80,
+                height: 4,
+                background: 'linear-gradient(90deg, #d32f2f 0%, #ff6b6b 100%)',
+                borderRadius: '2px',
+              }}
+            />
+          </Box>
+          <Grid container spacing={3}>
+            {product.benefits.map((benefit, idx) => (
+              <Grid item xs={12} sm={6} md={4} key={idx}>
+                <Card
+                  className="benefit-card"
+                  sx={{
+                    height: '100%',
+                    background: 'linear-gradient(135deg, #fff 0%, #f8f9fa 100%)',
+                    borderLeft: '5px solid #d32f2f',
+                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    '&:hover': {
+                      transform: 'translateY(-8px)',
+                      boxShadow: '0 12px 32px rgba(211, 47, 47, 0.2)',
+                    },
+                  }}
+                >
+                  <CardContent>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: '#555',
+                        fontWeight: 500,
+                        fontSize: '0.95rem',
+                        lineHeight: 1.6,
+                      }}
+                    >
+                      {benefit}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+
+        {/* Price and CTA */}
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 4,
+            mb: 12,
+            p: 5,
+            background: 'linear-gradient(135deg, #fff 0%, #f8f9fa 100%)',
+            borderRadius: 3,
+            boxShadow: '0 8px 32px rgba(211, 47, 47, 0.12)',
+            border: '1px solid rgba(211, 47, 47, 0.1)',
+            flexWrap: 'wrap',
+          }}
+        >
+          <Box>
+            <Typography
+              variant="body2"
+              sx={{
+                color: '#999',
+                mb: 1.5,
+                fontSize: '0.9rem',
+                fontWeight: 500,
+                letterSpacing: '0.5px',
+              }}
+            >
+              STARTING PRICE
+            </Typography>
+            <Typography
+              variant="h2"
+              sx={{
+                fontWeight: 900,
+                color: '#d32f2f',
+                fontSize: { xs: '2.5rem', md: '3.5rem' },
+              }}
+            >
+              {product.price}
+            </Typography>
+          </Box>
+          <Button
+            variant="contained"
+            size="large"
+            sx={{
+              bgcolor: '#d32f2f',
+              ml: 'auto',
+              px: 5,
+              py: 2,
+              fontSize: '1.05rem',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              borderRadius: 1.5,
+              boxShadow: '0 8px 20px rgba(211, 47, 47, 0.3)',
+              '@media (max-width: 600px)': {
+                ml: 0,
+                width: '100%',
+              },
+              '&:hover': {
+                bgcolor: '#b71c1c',
+                boxShadow: '0 12px 28px rgba(211, 47, 47, 0.4)',
+                transform: 'translateY(-2px)',
+              },
+              transition: 'all 0.3s ease',
+            }}
+          >
+            Request Quote
+          </Button>
+        </Box>
+      </Container>
+
+      {/* CTA Section */}
       <Box
         sx={{
-          position: 'relative',
-          minHeight: 400,
-          backgroundImage:
-            'linear-gradient(26deg, rgba(0,0,0,0.7) 0%, rgba(39,46,56,0.7) 100%), url(/api/placeholder/1920/600)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)',
+          py: 12,
           color: '#fff',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
           textAlign: 'center',
-          py: 8,
+          position: 'relative',
+          overflow: 'hidden',
+          '&:before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'radial-gradient(circle at 20% 50%, rgba(211, 47, 47, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(211, 47, 47, 0.05) 0%, transparent 50%)',
+            pointerEvents: 'none',
+          },
         }}
       >
-        <Box>
+        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
           <Typography
             variant="h2"
             sx={{
-              fontWeight: 800,
+              fontWeight: 900,
               mb: 2,
-              fontSize: { xs: '2rem', md: '3rem' },
+              fontSize: { xs: '2rem', md: '3.5rem' },
+              lineHeight: 1.2,
+              background: 'linear-gradient(135deg, #fff 0%, #d32f2f 100%)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
             }}
           >
-            Built to Last. Built to Perform.
+            Built to Last.
+            <br />
+            Built to Perform.
           </Typography>
           <Typography
             variant="h6"
             sx={{
-              mb: 4,
-              fontSize: '1.2rem',
-              fontWeight: 500,
+              mb: 6,
+              fontSize: '1.25rem',
+              fontWeight: 400,
+              color: '#ccc',
+              maxWidth: 600,
+              mx: 'auto',
+              lineHeight: 1.8,
             }}
           >
-            Engineered and manufactured with quality in mind
+            Engineered and manufactured with quality and reliability in mind
           </Typography>
-          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Button
               variant="outlined"
               size="large"
               sx={{
-                borderColor: '#fff',
-                color: '#fff',
-                px: 4,
-                '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.1)' },
+                borderColor: '#d32f2f',
+                color: '#d32f2f',
+                px: 5,
+                py: 1.8,
+                fontSize: '1rem',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                borderWidth: '2px',
+                borderRadius: 1.5,
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  bgcolor: '#d32f2f',
+                  color: '#fff',
+                  borderColor: '#d32f2f',
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 8px 20px rgba(211, 47, 47, 0.3)',
+                },
               }}
             >
               Learn About Us
@@ -633,14 +923,26 @@ export const ProductDetail: React.FC = () => {
               sx={{
                 bgcolor: '#d32f2f',
                 color: '#fff',
-                px: 4,
-                '&:hover': { bgcolor: '#b71c1c' },
+                px: 5,
+                py: 1.8,
+                fontSize: '1rem',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                borderRadius: 1.5,
+                boxShadow: '0 8px 20px rgba(211, 47, 47, 0.3)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  bgcolor: '#b71c1c',
+                  boxShadow: '0 12px 28px rgba(211, 47, 47, 0.4)',
+                  transform: 'translateY(-2px)',
+                },
               }}
             >
               Contact Us
             </Button>
           </Box>
-        </Box>
+        </Container>
       </Box>
 
       <Footer />
