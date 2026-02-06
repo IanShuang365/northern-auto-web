@@ -203,7 +203,6 @@
 * {
   transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-}
 
 @media (max-width: 768px) {
   .product-detail-hero {

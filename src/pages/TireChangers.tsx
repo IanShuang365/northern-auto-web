@@ -80,7 +80,7 @@ export const TireChangers: React.FC = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
 
-  const carouselItems = tireChangerProducts.slice(0, 3);
+  // const carouselItems = tireChangerProducts.slice(0, 3);
   const maxCarouselIndex = Math.max(0, tireChangerProducts.length - 1);
 
   useEffect(() => {
