@@ -1,0 +1,185 @@
+/* User Manual Page Styles */
+
+.user-manual-hero {
+  background: linear-gradient(135deg, #d32f2f 0%, #8b1a1a 50%, #1a1a1a 100%);
+  padding: 3rem 0;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.user-manual-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.1) 0%, transparent 50%), 
+              radial-gradient(circle at 80% 80%, rgba(211, 47, 47, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.user-manual-section {
+  margin-bottom: 4rem;
+}
+
+.user-manual-section-title {
+  position: relative;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.user-manual-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #d32f2f 0%, #ff6b6b 100%);
+  border-radius: 2px;
+}
+
+/* Accordion Styles */
+.MuiAccordion-root {
+  background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
+  border: 1px solid rgba(211, 47, 47, 0.15) !important;
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.12) !important;
+  margin-bottom: 1rem;
+  border-radius: 12px !important;
+  transition: all 0.3s ease;
+}
+
+.MuiAccordion-root:hover {
+  box-shadow: 0 8px 24px rgba(211, 47, 47, 0.18) !important;
+}
+
+.MuiAccordionSummary-root {
+  background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+  border-bottom: 2px solid #d32f2f;
+  border-radius: 8px 8px 0 0 !important;
+  transition: all 0.3s ease;
+}
+
+.MuiAccordionSummary-root:hover {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+}
+
+.MuiAccordionDetails-root {
+  padding-top: 1.5rem;
+}
+
+/* Quick Links Cards */
+.quick-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* List Styles */
+.user-manual-list {
+  padding: 0;
+}
+
+.user-manual-list .MuiListItem-root {
+  padding-left: 0;
+  padding-right: 0;
+  border-left: 4px solid #d32f2f;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.user-manual-list .MuiListItem-root:hover {
+  background-color: rgba(211, 47, 47, 0.02);
+  transform: translateX(4px);
+}
+
+/* Download Section */
+.download-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+  border: 2px solid rgba(211, 47, 47, 0.2);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(211, 47, 47, 0.12);
+}
+
+/* Support Section */
+.support-section {
+  background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 50%, #1a1a1a 100%);
+  border: 1px solid rgba(211, 47, 47, 0.2);
+  padding: 2.5rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 8px 28px rgba(211, 47, 47, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.support-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.08) 0%, transparent 50%), 
+              radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Enhanced Button Animations */
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+/* Card Animation Effects */
+.MuiCard-root {
+  position: relative;
+}
+
+.MuiCard-root::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(211, 47, 47, 0.1), transparent);
+  transition: left 0.35s ease;
+}
+
+.MuiCard-root:hover::before {
+  left: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .user-manual-section {
+    margin-bottom: 2rem;
+  }
+
+  .quick-links-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .download-section,
+  .support-section {
+    padding: 1.5rem;
+  }
+
+  .user-manual-hero {
+    padding: 2rem 0;
+  }
+
+  .user-manual-hero h2 {
+    font-size: 1.8rem !important;
+  }
+}

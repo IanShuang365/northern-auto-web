@@ -15,10 +15,16 @@ import { ProductDetail } from './pages/ProductDetail'
 import { Products } from './pages/Products'
 import { About } from './pages/About'
 import { Contact } from './pages/Contact'
+import { UserManual } from './pages/UserManual'
 import { GeneralRepair } from './pages/GeneralRepair'
 import { TireDealer } from './pages/TireDealer'
 import { CarDealership } from './pages/CarDealership'
 import { HeavyDuty } from './pages/HeavyDuty'
+import { TireChangers } from './pages/TireChangers'
+import { WheelBalancers } from './pages/WheelBalancers'
+import { Lifts } from './pages/Lifts'
+import { AirCompressors } from './pages/AirCompressors'
+import { WheelAlignment } from './pages/WheelAlignment'
 
 const theme = createTheme({
   palette: {
@@ -73,10 +79,16 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/user-manual" element={<UserManual />} />
           <Route path="/shop/general-repair" element={<GeneralRepair />} />
           <Route path="/shop/tire-dealer" element={<TireDealer />} />
           <Route path="/shop/car-dealership" element={<CarDealership />} />
           <Route path="/shop/heavy-duty" element={<HeavyDuty />} />
+          <Route path="/tire-changers" element={<TireChangers />} />
+          <Route path="/wheel-balancers" element={<WheelBalancers />} />
+          <Route path="/lifts" element={<Lifts />} />
+          <Route path="/air-compressors" element={<AirCompressors />} />
+          <Route path="/wheel-alignment" element={<WheelAlignment />} />
         </Routes>
       </Router>
     </ThemeProvider>

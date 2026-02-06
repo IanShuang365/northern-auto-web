@@ -26,8 +26,8 @@ export const Header: React.FC = () => {
   const megaMenuColumns = [
     {
       title: 'TIRE CHANGERS',
-      href: '/products#tire-changers',
-      desc: 'Light Passenger Car and Truck',
+      href: '/tire-changers',
+      desc: 'Browse all tire changer models',
       items: [
         { label: 'Maxx Series', href: '/product/maxx-series', highlight: false },
         { label: 'RC Series', href: '/product/rc-series', highlight: false },
@@ -42,8 +42,8 @@ export const Header: React.FC = () => {
     },
     {
       title: 'WHEEL BALANCERS',
-      href: '/products#wheel-balancers',
-      desc: 'Light Passenger Car and Truck',
+      href: '/wheel-balancers',
+      desc: 'Browse all wheel balancer models',
       items: [
         { label: 'E900 Diagnostic Balancer', href: '/product/e900', highlight: true },
         { label: 'Direct Drive Series', href: '/product/direct-drive', highlight: false },
@@ -56,8 +56,8 @@ export const Header: React.FC = () => {
     },
     {
       title: 'LIFTS',
-      href: '/products#lifts',
-      desc: 'Light Passenger Car and Truck',
+      href: '/lifts',
+      desc: 'Browse all lift models',
       items: [
         { label: 'Scissor Lifts', href: '/product/scissor-lifts', highlight: false },
         { label: '2 Post', href: '/product/2-post-lifts', highlight: false },
@@ -71,14 +71,14 @@ export const Header: React.FC = () => {
     },
     {
       title: 'AIR COMPRESSORS',
-      href: '/product/air-compressors',
+      href: '/air-compressors',
       items: [
         { label: 'Maxx Air Compressors', href: '/product/maxx-air-compressor', highlight: false },
       ],
       extra: [
         {
           title: 'ALIGNMENT',
-          href: '/products#alignment',
+          href: '/wheel-alignment',
           items: [
             { label: 'CWA 6500 Wheel Aligner', href: '/product/cwa-6500', highlight: false },
             { label: 'CWA 6000 Wheel Aligner', href: '/product/cwa-6000', highlight: false },
@@ -86,7 +86,7 @@ export const Header: React.FC = () => {
         },
         {
           title: 'INSPECTION LANE',
-          href: '/products#inspection',
+          href: '/air-compressors',
           items: [
             { label: 'Tread Depth Scanner', href: '/product/tread-depth-scanner', highlight: false },
             { label: 'Bodyguard', href: '/product/bodyguard', highlight: false },
@@ -100,6 +100,7 @@ export const Header: React.FC = () => {
   const navLinks = [
     // Products will be handled as a dropdown
     { label: 'About', href: '/about' },
+    { label: 'User Manual', href: '/user-manual' },
     { label: 'Contact', href: '/contact' },
   ];
 
