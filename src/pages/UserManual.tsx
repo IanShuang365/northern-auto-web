@@ -131,39 +131,26 @@ export const UserManual: React.FC = () => {
                 <List dense>
                   <ListItem sx={{ py: 0.8 }}>
                     <ListItemText 
-                      primary="Maxx Series Manual" 
+                      primary="TC-100 User Manual" 
                       secondary="Light duty, automated operation"
                       secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
                     />
                   </ListItem>
                   <ListItem sx={{ py: 0.8 }}>
                     <ListItemText 
-                      primary="RC Series Manual" 
+                      primary="TC-211 User Manual" 
                       secondary="Standard rotating chuck model"
                       secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
                     />
                   </ListItem>
                   <ListItem sx={{ py: 0.8 }}>
                     <ListItemText 
-                      primary="C Series Manual" 
-                      secondary="Compact, space-saving design"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="Tilt Back Manual" 
+                      primary="TC-533 User Manual" 
                       secondary="Heavy-duty commercial use"
                       secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
                     />
                   </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="CHD Series Manual" 
-                      secondary="Professional grade equipment"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
+                  
                 </List>
                 <Button
                   variant="outlined"
@@ -194,28 +181,28 @@ export const UserManual: React.FC = () => {
                 <List dense>
                   <ListItem sx={{ py: 0.8 }}>
                     <ListItemText 
-                      primary="E900 Diagnostic Manual" 
-                      secondary="Advanced diagnostic system"
+                      primary="TB-100 Manual" 
+                      secondary="Entry level wheel balancer"
                       secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
                     />
                   </ListItem>
                   <ListItem sx={{ py: 0.8 }}>
                     <ListItemText 
-                      primary="Direct Drive Manual" 
-                      secondary="High-speed direct drive system"
+                      primary="TBL-301 Manual" 
+                      secondary="Dual Laser wheel balancer"
                       secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
                     />
                   </ListItem>
                   <ListItem sx={{ py: 0.8 }}>
                     <ListItemText 
-                      primary="Space Saving Manual" 
+                      primary="TBL-602 User Manual" 
                       secondary="Compact workshop solution"
                       secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
                     />
                   </ListItem>
                   <ListItem sx={{ py: 0.8 }}>
                     <ListItemText 
-                      primary="HD 6450 Manual" 
+                      primary="TBL-510 User Manual" 
                       secondary="Heavy-duty industrial model"
                       secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
                     />
@@ -241,48 +228,42 @@ export const UserManual: React.FC = () => {
               </Paper>
             </Grid>
 
-            {/* Lifts */}
+            {/* AC Machines */}
             <Grid item xs={12} md={6}>
               <Paper sx={{ p: 3.5, background: 'linear-gradient(135deg, #f8f9fa 0%, #fff 100%)', border: '1px solid rgba(211, 47, 47, 0.15)', boxShadow: '0 4px 12px rgba(211, 47, 47, 0.08)', borderRadius: 1.5 }}>
                 <Typography variant="h6" sx={{ fontWeight: 700, color: '#d32f2f', mb: 2, fontSize: '1.15rem' }}>
-                  🚗 Lifts
+                  🚗 AC Machines
                 </Typography>
                 <List dense>
                   <ListItem sx={{ py: 0.8 }}>
                     <ListItemText 
-                      primary="Scissor Lifts Manual" 
-                      secondary="Vertical lifting mechanism"
+                      primary="AC134 User Manual" 
+                      secondary="R134A refrigerant model"
                       secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
                     />
                   </ListItem>
                   <ListItem sx={{ py: 0.8 }}>
                     <ListItemText 
-                      primary="2-Post Lifts Manual" 
-                      secondary="Symmetric column design"
+                      primary="AC-1234YF User Manual" 
+                      secondary="R1234YF refrigerant model"
                       secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
                     />
                   </ListItem>
                   <ListItem sx={{ py: 0.8 }}>
                     <ListItemText 
-                      primary="4-Post Lifts Manual" 
-                      secondary="Maximum stability and safety"
+                      primary="Dual Gas UserManual" 
+                      secondary="Dual refrigerant compatibility"
                       secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
                     />
                   </ListItem>
                   <ListItem sx={{ py: 0.8 }}>
                     <ListItemText 
-                      primary="Low Profile Manual" 
-                      secondary="Compact ceiling-friendly model"
+                      primary="Heavy Duty HD50-CV User Manual" 
+                      secondary="Heavy duty for commercial use"
                       secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
                     />
                   </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="Mobile Columns Manual" 
-                      secondary="Portable heavy-duty lifting"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
+                  
                 </List>
                 <Button
                   variant="outlined"

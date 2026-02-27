@@ -94,13 +94,13 @@ export const Contact: React.FC = () => {
     },
     {
       icon: <LocationOnIcon sx={{ fontSize: 32, color: '#d32f2f' }} />,
-      title: 'WhatsApp',
-      details: ['+1 (437) 553-8502'],
+      title: 'Address',
+      details: ['1235 Journey\'s End Cir #3, Newmarket, ON L3Y 8T7'],
     },
     {
       icon: <AccessTimeIcon sx={{ fontSize: 32, color: '#d32f2f' }} />,
       title: 'Business Hours',
-      details: ['Monday - Friday: 9:00 AM - 5:00 PM EST', 'Saturday: 10:00 AM - 3:00 PM EST'],
+      details: ['Monday - Friday: 10:00 AM - 4:30 PM EST', 'Saturday: 10:00 AM - 3:00 PM EST'],
     },
   ];
 

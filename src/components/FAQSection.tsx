@@ -18,8 +18,8 @@ interface FAQ {
 const faqs: FAQ[] = [
   {
     id: '1',
-    question: 'What types of equipment does BDB Car Tools offer?',
-    answer: 'BDB Car Tools provides a comprehensive range of professional automotive equipment including Wheel Balancers, Wheel Aligners, Tire Changers, and Heavy-Duty Lift Systems. All our equipment is designed to improve efficiency, accuracy, and profitability for repair shops of all sizes.'
+    question: 'What types of equipment does Northern Auto Equipment offer?',
+    answer: 'Northern Auto Equipment provides a comprehensive range of professional automotive equipment including Wheel Balancers, Wheel Aligners, Tire Changers, and Scanners. All our equipment is designed to improve efficiency, accuracy, and profitability for repair shops of all sizes.'
   },
   {
     id: '2',
@@ -29,7 +29,7 @@ const faqs: FAQ[] = [
   {
     id: '3',
     question: 'What kind of warranty and support do you provide?',
-    answer: 'All BDB Car Tools products come with comprehensive warranties and professional technical support. We offer 24/7 customer support via phone at +1 (647) 886-2259, and our team is ready to help with setup, troubleshooting, and maintenance.'
+    answer: 'All Northern Auto Equipment products come with comprehensive warranties and professional technical support. We offer 24/7 customer support via phone at +1 (647) 886-2259, and our team is ready to help with setup, troubleshooting, and maintenance.'
   },
   {
     id: '4',

@@ -95,7 +95,7 @@ export const About: React.FC = () => {
                   fontSize: '1.1rem',
                 }}
               >
-                Founded in 1995, Northern Auto has been at the forefront of automotive equipment innovation for nearly three decades. What started as a small family business has grown into an industry leader, serving thousands of shops across North America.
+                Founded in 1995, Northern Auto has been at the forefront of automotive equipment innovation for nearly three decades. What started as a small family business in China has grown into an industry leader, serving thousands of shops across North America.
               </Typography>
               <Typography
                 sx={{

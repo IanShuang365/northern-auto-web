@@ -6,8 +6,8 @@ import {
   Typography,
   Button,
 } from '@mui/material';
-import product1 from '../assets/product1.jpg';
-import product2 from '../assets/product2.jpg';
+import product1 from '../assets/Balancer-1.jpg';
+import product2 from '../assets/Tool Box-1.jpg';
 import product3 from '../assets/product3.jpeg';
 import product4 from '../assets/product4.jpeg';
 
@@ -19,7 +19,7 @@ export const HeroSection: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setBgIndex((prev) => (prev + 1) % heroImages.length);
-    }, 4000); // 4 seconds per slide
+    }, 3000); // 3 seconds per slide
     return () => clearInterval(interval);
   }, []);
 
@@ -100,7 +100,7 @@ export const HeroSection: React.FC = () => {
                 maxWidth: 500,
               }}
             >
-              Discover precision, durability, and innovation for your shop. Explore our range of wheel balancers, aligners, lifts, and more.
+              Discover precision, durability, and innovation for your shop. Explore our range of wheel balancers, Tire Changers, Scanners, and more.
             </Typography>
             <Button
               variant="contained"

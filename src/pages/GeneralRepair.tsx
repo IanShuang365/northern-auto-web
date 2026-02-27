@@ -35,7 +35,7 @@ export const GeneralRepair: React.FC = () => {
     'Wheel Aligners',
     'Diagnostic Systems',
     'Tire Changers',
-    'Lift Systems',
+    'Tool Boxes',
   ];
 
   return (

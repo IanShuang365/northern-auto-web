@@ -18,6 +18,12 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import './CategoryPage.css';
+import product1 from '../assets/Balancer-1.jpg';
+import product2 from '../assets/Tool Box-1.jpg';
+import product3 from '../assets/product3.jpeg';
+import product4 from '../assets/product4.jpeg';
+import product5 from '../assets/product5.jpeg';
+import product6 from '../assets/product6.jpeg';
 
 const tireChangerProducts = [
   {
@@ -25,7 +31,7 @@ const tireChangerProducts = [
     name: 'Maxx Series',
     category: 'Light Duty',
     price: '$8,500',
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&h=400&fit=crop',
     description: 'Automated tire changer for light passenger vehicles with precision control',
     features: ['Automatic operation', 'LED display', 'Precision chuck'],
   },

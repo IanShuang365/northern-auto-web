@@ -31,7 +31,7 @@ const features: Feature[] = [
   {
     id: '3',
     title: 'Ease Of Use',
-    description: 'The technology we design is user-friendly and features U.S.-built systems for easy serviceability and minimal downtime, maximizing shop efficiency and productivity.',
+    description: 'The technology we design is user-friendly and features Nothern American-built systems for easy serviceability and minimal downtime, maximizing shop efficiency and productivity.',
     icon: '⚙️'
   }
 ];
