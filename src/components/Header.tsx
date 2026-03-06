@@ -26,80 +26,39 @@ export const Header: React.FC = () => {
     {
       title: 'TIRE CHANGERS',
       href: '/tire-changers',
-      desc: 'Browse all tire changer models',
+      desc: 'Tire changing equipment',
       items: [
-        { label: 'TC-100 Entry Series', href: '/product/tc-100', highlight: false },
-        { label: 'TC-211 Professional', href: '/product/tc-211', highlight: false },
-        { label: 'Maxx Series Tire Changer', href: '/product/maxx-series', highlight: false },
-        { label: 'RC Series Tire Changer', href: '/product/rc-series', highlight: false },
-        { label: 'C Series Tire Changer', href: '/product/c-series', highlight: false },
-        { label: 'Tilt Back Tire Changers', href: '/product/tilt-back', highlight: false },
-      ],
-      heavyDesc: 'Heavy Duty',
-      heavyItems: [
-        { label: 'CHD Series', href: '/product/chd-series', highlight: false },
-        { label: 'HIT Series', href: '/product/hit-series', highlight: false },
+        { label: 'TC-100 Entry Series Tire Changer', href: '/product/tc-100-tire-changer', highlight: false },
+        { label: 'TC-211 Professional Tire Changer', href: '/product/tc-211-tire-changer', highlight: false },
       ],
     },
     {
       title: 'WHEEL BALANCERS',
       href: '/wheel-balancers',
-      desc: 'Browse all wheel balancer models',
+      desc: 'Precision wheel balancing systems',
       items: [
-        { label: 'Elite II Pro Balancer', href: '/product/elite-ii-pro', highlight: true },
-        { label: 'NH-3 Series', href: '/product/nh-3', highlight: false },
-        { label: 'NH-6 Series', href: '/product/nh-6', highlight: false },
-        { label: 'Space Saving Wheel Balancers', href: '/product/space-saving', highlight: false },
-      ],
-      heavyDesc: 'Heavy Duty',
-      heavyItems: [
-        { label: 'HD 6450 Heavy-Duty', href: '/product/hd-6450', highlight: false },
+        { label: 'Elite II Pro Wheel Balancer', href: '/product/elite-ii-pro', highlight: true },
+        { label: 'NH-3 Series Wheel Balancer', href: '/product/nh-3-series', highlight: false },
+        { label: 'NH-6 Series Wheel Balancer', href: '/product/nh-6-series', highlight: false },
       ],
     },
     {
-      title: 'AC MACHINES',
+      title: 'AC & DIAGNOSTIC',
       href: '/air-compressors',
-      desc: 'Browse all AC service equipment',
+      desc: 'AC service and diagnostic tools',
       items: [
-        { label: 'R134A AC Machine', href: '/product/r134a', highlight: false },
-        { label: 'R1234YF AC Machine', href: '/product/r1234yf', highlight: false },
-        { label: 'MS906PRO Diagnostic Scanner', href: '/product/ms906pro', highlight: false },
-      ],
-      heavyDesc: 'Air Systems',
-      heavyItems: [
-        { label: 'Maxx Air Compressor', href: '/product/maxx-air-compressor', highlight: false },
+        { label: 'R134A AC Service Machine', href: '/product/r134a-ac-machine', highlight: false },
+        { label: 'R1234YF AC Service Machine', href: '/product/r1234yf-ac-machine', highlight: false },
+        { label: 'MS906PRO Advanced Diagnostic Scanner', href: '/product/ms906pro-scanner', highlight: false },
       ],
     },
     {
       title: 'LIFTING EQUIPMENT',
       href: '/lifts',
+      desc: 'Vehicle lifting systems',
       items: [
-        { label: 'SlideTop Series Lift 1', href: '/product/slideop-lift-1', highlight: false },
-        { label: 'SlideTop Series Lift 2', href: '/product/slideop-lift-2', highlight: false },
-        { label: '2-Post Lift System', href: '/product/2-post-lifts', highlight: false },
-        { label: '4-Post Lift System', href: '/product/4-post-lifts', highlight: false },
-        { label: 'Low-Profile Lift System', href: '/product/low-profile-lifts', highlight: false },
-        { label: 'Mobile Lift Columns', href: '/product/mobile-columns', highlight: false },
-      ],
-      extra: [
-        {
-          title: 'Storage & Tools',
-          href: '/tool-boxes',
-          items: [
-            { label: 'Mobile Tool Cart', href: '/product/tool-cart', highlight: false },
-            { label: 'Battery Tester Pro', href: '/product/battery-tester', highlight: false },
-            { label: 'Shop Press 20-Ton', href: '/product/shop-press', highlight: false },
-          ],
-        },
-        {
-          title: 'Alignment & Diagnostics',
-          href: '/wheel-alignment',
-          items: [
-            { label: 'CWA 6000 Wheel Aligner', href: '/product/cwa-6000', highlight: false },
-            { label: 'Tread Depth Scanner', href: '/product/tread-depth-scanner', highlight: false },
-            { label: 'Alignment Check Tool', href: '/product/alignment-check', highlight: false },
-          ],
-        },
+        { label: 'SlideTop Lift Series 1', href: '/product/slidetop-lift-1', highlight: false },
+        { label: 'SlideTop Lift Series 2', href: '/product/slidetop-lift-2', highlight: false },
       ],
     },
   ];
@@ -361,10 +320,10 @@ export const Header: React.FC = () => {
                           <ul className="mega-menu-list">
                             {col.items.map((item) => (
                               <li key={item.label} style={{ lineHeight: '1.4em' }}>
-                                <a className="mega-menu-link" href={item.href} onClick={() => setMegaOpen(false)}>
+                                <Link component={RouterLink} to={item.href} className="mega-menu-link" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
                                   {item.highlight ? <span style={{ color: '#AE282E', fontWeight: 700 }}>NEW </span> : null}
                                   {item.label}
-                                </a>
+                                </Link>
                               </li>
                             ))}
                           </ul>
@@ -374,18 +333,18 @@ export const Header: React.FC = () => {
                           <ul className="mega-menu-list">
                             {col.heavyItems.map((item) => (
                               <li key={item.label} style={{ lineHeight: '1.4em' }}>
-                                <a className="mega-menu-link" href={item.href} onClick={() => setMegaOpen(false)}>{item.label}</a>
+                                <Link component={RouterLink} to={item.href} className="mega-menu-link" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>{item.label}</Link>
                               </li>
                             ))}
                           </ul>
                         )}
                         {col.extra && col.extra.map((ex) => (
                           <React.Fragment key={ex.title}>
-                            <a href={ex.href} className="mega-menu-title menu--item-title hover:text-red-700" onClick={() => setMegaOpen(false)}>{ex.title}</a>
+                            <Link component={RouterLink} to={ex.href} className="mega-menu-title menu--item-title hover:text-red-700" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>{ex.title}</Link>
                             <ul className="mega-menu-list">
                               {ex.items.map((item) => (
                                 <li key={item.label} style={{ lineHeight: '1.4em' }}>
-                                  <a className="mega-menu-link" href={item.href} onClick={() => setMegaOpen(false)}>{item.label}</a>
+                                  <Link component={RouterLink} to={item.href} className="mega-menu-link" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>{item.label}</Link>
                                 </li>
                               ))}
                             </ul>

@@ -18,59 +18,20 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import './CategoryPage.css';
-import tc100Main from '../assets/TC-100-main.png';
-import tc211Main from '../assets/TC-211-Main.png';
-import tc2111 from '../assets/TC-211-1.jpg';
-import tc2112 from '../assets/TC-211-2.jpg';
-import tc2113 from '../assets/TC-211-3.jpg';
+import { products } from '../data/products';
 
-const tireChangerProducts = [
-  {
-    id: 'tc-100-entry-series',
-    name: 'TC-100 Entry Series',
-    category: 'Light Duty',
-    price: '$8,500',
-    image: tc100Main,
-    description: 'Automated tire changer designed for light passenger vehicles with precision control',
-    features: ['Automatic operation', 'LED display', 'Precision chuck'],
-  },
-  {
-    id: 'tc-211',
-    name: 'TC-211',
-    category: 'Standard',
-    price: '$9,200',
-    image: tc211Main,
-    description: 'Standard model rotating chuck for professional workshops and service centers',
-    features: ['Rotating chuck', 'Heavy-duty design', 'Fast operation'],
-  },
-  {
-    id: 'tc-211-model-1',
-    name: 'TC-211 Model 1',
-    category: 'Compact',
-    price: '$7,800',
-    image: tc2111,
-    description: 'Compact tire changer variant with space-saving design for smaller workshops',
-    features: ['Space-saving', 'Compact footprint', 'Efficient'],
-  },
-  {
-    id: 'tc-211-model-2',
-    name: 'TC-211 Model 2',
-    category: 'Commercial',
-    price: '$12,500',
-    image: tc2112,
-    description: 'Enhanced commercial-grade model with tilt-back chuck for heavy-duty operations',
-    features: ['Tilt-back design', 'Heavy-duty', 'Professional'],
-  },
-  {
-    id: 'tc-211-model-3',
-    name: 'TC-211 Model 3',
-    category: 'Heavy Duty',
-    price: '$14,200',
-    image: tc2113,
-    description: 'Premium heavy-duty tire changer for commercial and fleet operations',
-    features: ['Heavy-duty', 'Fleet-ready', 'Industrial-grade'],
-  },
-];
+// Filter products by Tire Service category
+const tireChangerProducts = products
+  .filter(product => product.category === 'Tire Service')
+  .map(product => ({
+    id: product.slug,
+    name: product.title,
+    category: product.category,
+    price: product.price,
+    image: product.image,
+    description: product.shortDescription,
+    features: product.features.slice(0, 3),
+  }));
 
 export const TireChangers: React.FC = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);

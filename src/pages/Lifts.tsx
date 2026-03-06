@@ -18,59 +18,20 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import './CategoryPage.css';
-import slideTop1 from '../assets/SlideTop-1.png';
-import slideTop2 from '../assets/SlideTop-2.png';
-import slideTop3 from '../assets/SlideTop-3.png';
-import toolBox from '../assets/Orange Tool Box.jpg';
-import toolBox1 from '../assets/Tool Box-1.jpg';
+import { products } from '../data/products';
 
-const liftsProducts = [
-  {
-    id: 'slidetop-1',
-    name: 'SlideTop Series 1',
-    category: 'Vertical',
-    price: '$7,200',
-    image: slideTop1,
-    description: 'Vertical scissor mechanism lift with smooth and reliable operation',
-    features: ['Vertical mechanism', 'Smooth operation', 'Safety certified'],
-  },
-  {
-    id: 'slidetop-2',
-    name: 'SlideTop Series 2',
-    category: 'Symmetric',
-    price: '$9,500',
-    image: slideTop2,
-    description: 'Symmetric design for balanced lifting and wide service access',
-    features: ['Symmetric columns', 'Easy access', 'Professional grade'],
-  },
-  {
-    id: 'slidetop-3',
-    name: 'SlideTop Series 3',
-    category: 'Heavy Duty',
-    price: '$12,800',
-    image: slideTop3,
-    description: 'Heavy-duty configuration for maximum stability and safety',
-    features: ['Maximum stability', 'Reinforced design', 'Heavy-duty'],
-  },
-  {
-    id: 'orange-tool-box',
-    name: 'Orange Tool Box',
-    category: 'Storage',
-    price: '$2,890',
-    image: toolBox,
-    description: 'Compact tool storage solution with durable construction',
-    features: ['Durable construction', 'Easy transport', 'Space-saving'],
-  },
-  {
-    id: 'tool-box-1',
-    name: 'Professional Tool Box',
-    category: 'Storage',
-    price: '$3,500',
-    image: toolBox1,
-    description: 'Professional-grade tool storage with multiple compartments',
-    features: ['Multiple compartments', 'Heavy-duty', 'Professional'],
-  },
-];
+// Filter products by Lifts & Equipment category
+const liftsProducts = products
+  .filter(product => product.category === 'Lifts & Equipment')
+  .map(product => ({
+    id: product.slug,
+    name: product.title,
+    category: product.category,
+    price: product.price,
+    image: product.image,
+    description: product.shortDescription,
+    features: product.features.slice(0, 3),
+  }));
 
 export const Lifts: React.FC = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);

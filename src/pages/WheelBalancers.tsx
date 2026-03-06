@@ -18,50 +18,20 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import './CategoryPage.css';
-import elitePro from '../assets/Elite ii pro.jpg';
-import elite1 from '../assets/Elite ii pro-1.jpg';
-import elite2 from '../assets/Elite ii pro-2.jpg';
+import { products } from '../data/products';
 
-import nh3 from '../assets/NH-3-0.jpg';
-
-const wheelBalancerProducts = [
-  {
-    id: 'elite-ii-pro',
-    name: 'Elite II Pro',
-    category: 'Advanced',
-    price: '$6,500',
-    image: elitePro,
-    description: 'Advanced diagnostic wheel balancer with precision measurement technology',
-    features: ['LED display', 'Quick calibration', 'Precision measurement'],
-  },
-  {
-    id: 'elite-ii-pro-1',
-    name: 'Elite II Pro Model 1',
-    category: 'Professional',
-    price: '$5,200',
-    image: elite1,
-    description: 'High-speed professional wheel balancing equipment with digital display',
-    features: ['High-speed', 'Professional grade', 'Durable'],
-  },
-  {
-    id: 'elite-ii-pro-2',
-    name: 'Elite II Pro Model 2',
-    category: 'Compact',
-    price: '$4,500',
-    image: elite2,
-    description: 'Compact workshop wheel balancer solution for limited spaces',
-    features: ['Compact design', 'Space-efficient', 'Easy operation'],
-  },
-  {
-    id: 'nh-3',
-    name: 'NH-3 Series',
-    category: 'Heavy Duty',
-    price: '$8,900',
-    image: nh3,
-    description: 'Industrial heavy-duty wheel balancer for commercial operations',
-    features: ['Heavy-duty', 'Industrial-grade', 'Professional'],
-  },
-];
+// Filter products by Measurement & Diagnostics category
+const wheelBalancerProducts = products
+  .filter(product => product.category === 'Measurement & Diagnostics')
+  .map(product => ({
+    id: product.slug,
+    name: product.title,
+    category: product.category,
+    price: product.price,
+    image: product.image,
+    description: product.shortDescription,
+    features: product.features.slice(0, 3),
+  }));
 
 export const WheelBalancers: React.FC = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);

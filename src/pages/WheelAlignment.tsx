@@ -18,49 +18,20 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import './CategoryPage.css';
-import balancer1 from '../assets/Balancer-1.jpg';
-import elite3 from '../assets/Elite ii pro-3.jpg';
-import nh6 from '../assets/NH-6-0.jpg';
-import elite4 from '../assets/Elite ii pro-4.jpg';
+import { products } from '../data/products';
 
-const alignmentProducts = [
-  {
-    id: 'balancer-professional',
-    name: 'Professional Balancer System',
-    category: 'Premium',
-    price: '$16,800',
-    image: balancer1,
-    description: 'Advanced 3D alignment system with precision wheel balancing technology',
-    features: ['3D alignment', 'Precision sensors', 'Digital calibration'],
-  },
-  {
-    id: 'elite-pro-3',
-    name: 'Elite Pro Model 3',
-    category: 'Professional',
-    price: '$12,500',
-    image: elite3,
-    description: 'Professional alignment equipment with comprehensive vehicle diagnostics',
-    features: ['Comprehensive diagnostics', 'Professional grade', 'High accuracy'],
-  },
-  {
-    id: 'nh-6-series',
-    name: 'NH-6 Series',
-    category: 'Standard',
-    price: '$9,200',
-    image: nh6,
-    description: 'Standard alignment system for general workshop use and maintenance',
-    features: ['Standard alignment', 'User-friendly', 'Reliable'],
-  },
-  {
-    id: 'elite-pro-4',
-    name: 'Elite Pro Model 4',
-    category: 'Portable',
-    price: '$3,800',
-    image: elite4,
-    description: 'Portable alignment checking system for mobile service operations',
-    features: ['Portable', 'Compact', 'Easy to use'],
-  },
-];
+// Use Measurement & Diagnostics products for alignment (wheel balancers)
+const alignmentProducts = products
+  .filter(product => product.category === 'Measurement & Diagnostics')
+  .map(product => ({
+    id: product.slug,
+    name: product.title,
+    category: product.category,
+    price: product.price,
+    image: product.image,
+    description: product.shortDescription,
+    features: product.features.slice(0, 3),
+  }));
 
 export const WheelAlignment: React.FC = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);

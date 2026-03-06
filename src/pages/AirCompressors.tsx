@@ -18,59 +18,20 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import './CategoryPage.css';
-import beadBlaster from '../assets/Bead Blaster-6L-Main.jpg';
-import sixL from '../assets/6L-3.jpg';
-import r134a from '../assets/R134A AC Machine.jpg';
-import r1234yf from '../assets/R1234YF Machine Main.png';
-import ms906 from '../assets/MS906PRO.jpg';
+import { products } from '../data/products';
 
-const airCompressorProducts = [
-  {
-    id: 'bead-blaster-6l',
-    name: 'Bead Blaster 6L System',
-    category: 'Industrial',
-    price: '$4,500',
-    image: beadBlaster,
-    description: 'High-capacity bead blasting system for continuous surface finishing operations',
-    features: ['High capacity', 'Precision control', 'Industrial-grade'],
-  },
-  {
-    id: 'general-purpose-system',
-    name: 'General Purpose System',
-    category: 'Professional',
-    price: '$5,800',
-    image: sixL,
-    description: 'Professional multi-purpose system with advanced filtration technology',
-    features: ['Advanced filtration', 'Professional grade', 'Durable'],
-  },
-  {
-    id: 'r134a-ac-machine',
-    name: 'R134A AC Machine',
-    category: 'AC Equipment',
-    price: '$4,200',
-    image: r134a,
-    description: 'Compact commercial AC service machine for R134A refrigerant systems',
-    features: ['Compact design', 'Commercial-grade', 'R134A compatible'],
-  },
-  {
-    id: 'r1234yf-ac-machine',
-    name: 'R1234YF AC Machine',
-    category: 'AC Equipment',
-    price: '$6,500',
-    image: r1234yf,
-    description: 'Modern AC service machine for R1234YF eco-friendly refrigerant systems',
-    features: ['Eco-friendly', 'Digital controls', 'Advanced diagnostics'],
-  },
-  {
-    id: 'ms906pro-scanner',
-    name: 'MS906PRO Scanner',
-    category: 'Diagnostic',
-    price: '$3,200',
-    image: ms906,
-    description: 'Advanced diagnostic scanner for complete vehicle system analysis',
-    features: ['Multi-brand support', 'Real-time diagnostics', 'Cloud connectivity'],
-  },
-];
+// Filter products by AC Service and Diagnostic Tools categories
+const airCompressorProducts = products
+  .filter(product => product.category === 'AC Service' || product.category === 'Diagnostic Tools')
+  .map(product => ({
+    id: product.slug,
+    name: product.title,
+    category: product.category,
+    price: product.price,
+    image: product.image,
+    description: product.shortDescription,
+    features: product.features.slice(0, 3),
+  }));
 
 export const AirCompressors: React.FC = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
