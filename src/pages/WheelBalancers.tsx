@@ -18,41 +18,46 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import './CategoryPage.css';
+import elitePro from '../assets/Elite ii pro.jpg';
+import elite1 from '../assets/Elite ii pro-1.jpg';
+import elite2 from '../assets/Elite ii pro-2.jpg';
+
+import nh3 from '../assets/NH-3-0.jpg';
 
 const wheelBalancerProducts = [
   {
-    id: 'e900',
-    name: 'E900 Diagnostic Balancer',
+    id: 'elite-ii-pro',
+    name: 'Elite II Pro',
     category: 'Advanced',
     price: '$6,500',
-    image: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&h=400&fit=crop',
+    image: elitePro,
     description: 'Advanced diagnostic wheel balancer with precision measurement technology',
     features: ['LED display', 'Quick calibration', 'Precision measurement'],
   },
   {
-    id: 'direct-drive',
-    name: 'Direct Drive Series',
+    id: 'elite-ii-pro-1',
+    name: 'Elite II Pro Model 1',
     category: 'Professional',
     price: '$5,200',
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&h=400&fit=crop',
-    description: 'High-speed professional wheel balancing equipment',
+    image: elite1,
+    description: 'High-speed professional wheel balancing equipment with digital display',
     features: ['High-speed', 'Professional grade', 'Durable'],
   },
   {
-    id: 'space-saving',
-    name: 'Space Saving Wheel Balancers',
+    id: 'elite-ii-pro-2',
+    name: 'Elite II Pro Model 2',
     category: 'Compact',
     price: '$4,500',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=400&fit=crop',
+    image: elite2,
     description: 'Compact workshop wheel balancer solution for limited spaces',
     features: ['Compact design', 'Space-efficient', 'Easy operation'],
   },
   {
-    id: 'hd-6450',
-    name: 'HD 6450',
+    id: 'nh-3',
+    name: 'NH-3 Series',
     category: 'Heavy Duty',
     price: '$8,900',
-    image: 'https://images.unsplash.com/photo-1513558161405-c67fce60579d?w=500&h=400&fit=crop',
+    image: nh3,
     description: 'Industrial heavy-duty wheel balancer for commercial operations',
     features: ['Heavy-duty', 'Industrial-grade', 'Professional'],
   },

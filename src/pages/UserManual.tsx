@@ -4,18 +4,62 @@ import {
   Container,
   Typography,
   Paper,
-  List,
-  ListItem,
-  ListItemText,
   Grid,
   Button,
 } from '@mui/material';
 import DownloadIcon from '@mui/icons-material/Download';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import acMachineManual from '../assets/AC Machine User Manual.pdf';
+import tbl510Manual from '../assets/TBL-510 User Manual.pdf';
+import tbl620Manual from '../assets/TBL-620 User Manual.pdf';
+import hdac50cvManual from '../assets/UserManual-HDAC-50CV.pdf';
 import './UserManual.css';
 
 export const UserManual: React.FC = () => {
+  const manuals = [
+    {
+      title: 'AC Machine User Manual',
+      description: 'Comprehensive guide for AC machine operation and maintenance',
+      file: acMachineManual,
+      fileName: 'AC Machine User Manual.pdf',
+      category: 'AC Equipment',
+      icon: '🚗',
+    },
+    {
+      title: 'TBL-510 User Manual',
+      description: 'Heavy-duty industrial wheel balancer manual',
+      file: tbl510Manual,
+      fileName: 'TBL-510 User Manual.pdf',
+      category: 'Wheel Balancers',
+      icon: '⚖️',
+    },
+    {
+      title: 'TBL-620 User Manual',
+      description: 'Advanced wheel balancer operation and maintenance guide',
+      file: tbl620Manual,
+      fileName: 'TBL-620 User Manual.pdf',
+      category: 'Wheel Balancers',
+      icon: '⚖️',
+    },
+    {
+      title: 'HDAC-50CV Heavy Duty User Manual',
+      description: 'Heavy-duty AC machine for commercial use',
+      file: hdac50cvManual,
+      fileName: 'UserManual-HDAC-50CV.pdf',
+      category: 'AC Equipment',
+      icon: '🚗',
+    },
+  ];
+
+  const handleDownload = (fileUrl: string, fileName: string) => {
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <>
       <Header />
@@ -109,7 +153,7 @@ export const UserManual: React.FC = () => {
                   borderRadius: '3px',
                 }}
               />
-              Product Manuals by Category
+              Available User Manuals
             </Typography>
             <Box
               sx={{
@@ -122,231 +166,55 @@ export const UserManual: React.FC = () => {
           </Box>
 
           <Grid container spacing={3}>
-            {/* Tire Changers */}
-            <Grid item xs={12} md={6}>
-              <Paper sx={{ p: 3.5, background: 'linear-gradient(135deg, #f8f9fa 0%, #fff 100%)', border: '1px solid rgba(211, 47, 47, 0.15)', boxShadow: '0 4px 12px rgba(211, 47, 47, 0.08)', borderRadius: 1.5 }}>
-                <Typography variant="h6" sx={{ fontWeight: 700, color: '#d32f2f', mb: 2, fontSize: '1.15rem' }}>
-                  🔧 Tire Changers
-                </Typography>
-                <List dense>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="TC-100 User Manual" 
-                      secondary="Light duty, automated operation"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="TC-211 User Manual" 
-                      secondary="Standard rotating chuck model"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="TC-533 User Manual" 
-                      secondary="Heavy-duty commercial use"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  
-                </List>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  startIcon={<DownloadIcon />}
-                  sx={{
-                    mt: 1.5,
-                    borderColor: '#d32f2f',
-                    color: '#d32f2f',
-                    fontWeight: 600,
-                    '&:hover': {
-                      bgcolor: 'rgba(211, 47, 47, 0.05)',
-                      borderColor: '#d32f2f',
-                    },
-                  }}
-                >
-                  Download All
-                </Button>
-              </Paper>
-            </Grid>
-
-            {/* Wheel Balancers */}
-            <Grid item xs={12} md={6}>
-              <Paper sx={{ p: 3.5, background: 'linear-gradient(135deg, #f8f9fa 0%, #fff 100%)', border: '1px solid rgba(211, 47, 47, 0.15)', boxShadow: '0 4px 12px rgba(211, 47, 47, 0.08)', borderRadius: 1.5 }}>
-                <Typography variant="h6" sx={{ fontWeight: 700, color: '#d32f2f', mb: 2, fontSize: '1.15rem' }}>
-                  ⚖️ Wheel Balancers
-                </Typography>
-                <List dense>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="TB-100 Manual" 
-                      secondary="Entry level wheel balancer"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="TBL-301 Manual" 
-                      secondary="Dual Laser wheel balancer"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="TBL-602 User Manual" 
-                      secondary="Compact workshop solution"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="TBL-510 User Manual" 
-                      secondary="Heavy-duty industrial model"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                </List>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  startIcon={<DownloadIcon />}
-                  sx={{
-                    mt: 1.5,
-                    borderColor: '#d32f2f',
-                    color: '#d32f2f',
-                    fontWeight: 600,
-                    '&:hover': {
-                      bgcolor: 'rgba(211, 47, 47, 0.05)',
-                      borderColor: '#d32f2f',
-                    },
-                  }}
-                >
-                  Download All
-                </Button>
-              </Paper>
-            </Grid>
-
-            {/* AC Machines */}
-            <Grid item xs={12} md={6}>
-              <Paper sx={{ p: 3.5, background: 'linear-gradient(135deg, #f8f9fa 0%, #fff 100%)', border: '1px solid rgba(211, 47, 47, 0.15)', boxShadow: '0 4px 12px rgba(211, 47, 47, 0.08)', borderRadius: 1.5 }}>
-                <Typography variant="h6" sx={{ fontWeight: 700, color: '#d32f2f', mb: 2, fontSize: '1.15rem' }}>
-                  🚗 AC Machines
-                </Typography>
-                <List dense>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="AC134 User Manual" 
-                      secondary="R134A refrigerant model"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="AC-1234YF User Manual" 
-                      secondary="R1234YF refrigerant model"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="Dual Gas UserManual" 
-                      secondary="Dual refrigerant compatibility"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="Heavy Duty HD50-CV User Manual" 
-                      secondary="Heavy duty for commercial use"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  
-                </List>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  startIcon={<DownloadIcon />}
-                  sx={{
-                    mt: 1.5,
-                    borderColor: '#d32f2f',
-                    color: '#d32f2f',
-                    fontWeight: 600,
-                    '&:hover': {
-                      bgcolor: 'rgba(211, 47, 47, 0.05)',
-                      borderColor: '#d32f2f',
-                    },
-                  }}
-                >
-                  Download All
-                </Button>
-              </Paper>
-            </Grid>
-
-            {/* Air Compressors & Alignment */}
-            <Grid item xs={12} md={6}>
-              <Paper sx={{ p: 3.5, background: 'linear-gradient(135deg, #f8f9fa 0%, #fff 100%)', border: '1px solid rgba(211, 47, 47, 0.15)', boxShadow: '0 4px 12px rgba(211, 47, 47, 0.08)', borderRadius: 1.5 }}>
-                <Typography variant="h6" sx={{ fontWeight: 700, color: '#d32f2f', mb: 2, fontSize: '1.15rem' }}>
-                  💨 Air Compressors & Alignment
-                </Typography>
-                <List dense>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="Maxx Air Compressor Manual" 
-                      secondary="Industrial-grade air supply"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="CWA 6500 Aligner Manual" 
-                      secondary="Advanced wheel alignment system"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="CWA 6000 Aligner Manual" 
-                      secondary="Professional alignment tool"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="Tread Depth Scanner Manual" 
-                      secondary="Tire measurement device"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                  <ListItem sx={{ py: 0.8 }}>
-                    <ListItemText 
-                      primary="Bodyguard System Manual" 
-                      secondary="Vehicle safety inspection tool"
-                      secondaryTypographyProps={{ sx: { fontSize: '0.85rem' } }}
-                    />
-                  </ListItem>
-                </List>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  startIcon={<DownloadIcon />}
-                  sx={{
-                    mt: 1.5,
-                    borderColor: '#d32f2f',
-                    color: '#d32f2f',
-                    fontWeight: 600,
-                    '&:hover': {
-                      bgcolor: 'rgba(211, 47, 47, 0.05)',
-                      borderColor: '#d32f2f',
-                    },
-                  }}
-                >
-                  Download All
-                </Button>
-              </Paper>
-            </Grid>
+            {manuals.map((manual, index) => (
+              <Grid item xs={12} md={6} lg={6} key={index}>
+                <Paper sx={{ p: 3.5, background: 'linear-gradient(135deg, #f8f9fa 0%, #fff 100%)', border: '1px solid rgba(211, 47, 47, 0.15)', boxShadow: '0 4px 12px rgba(211, 47, 47, 0.08)', borderRadius: 1.5, display: 'flex', flexDirection: 'column', height: '100%' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 2 }}>
+                    <Typography variant="h2" sx={{ fontSize: '2rem', mr: 2 }}>
+                      {manual.icon}
+                    </Typography>
+                    <Box sx={{ flex: 1 }}>
+                      <Typography variant="h6" sx={{ fontWeight: 700, color: '#d32f2f', mb: 0.5, fontSize: '1.15rem' }}>
+                        {manual.title}
+                      </Typography>
+                      <Typography variant="caption" sx={{ color: '#666', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                        {manual.category}
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: '#666',
+                      mb: 2.5,
+                      flex: 1,
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {manual.description}
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    size="medium"
+                    startIcon={<DownloadIcon />}
+                    onClick={() => handleDownload(manual.file, manual.fileName)}
+                    sx={{
+                      backgroundColor: '#d32f2f',
+                      color: '#fff',
+                      fontWeight: 600,
+                      textTransform: 'none',
+                      borderRadius: 1,
+                      '&:hover': {
+                        backgroundColor: '#b71c1c',
+                        boxShadow: '0 6px 16px rgba(211, 47, 47, 0.3)',
+                      },
+                    }}
+                  >
+                    Download PDF
+                  </Button>
+                </Paper>
+              </Grid>
+            ))}
           </Grid>
         </Box>
 

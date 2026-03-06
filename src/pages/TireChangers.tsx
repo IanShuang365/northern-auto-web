@@ -18,67 +18,57 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import './CategoryPage.css';
-import product1 from '../assets/Balancer-1.jpg';
-import product2 from '../assets/Tool Box-1.jpg';
-import product3 from '../assets/product3.jpeg';
-import product4 from '../assets/product4.jpeg';
-import product5 from '../assets/product5.jpeg';
-import product6 from '../assets/product6.jpeg';
+import tc100Main from '../assets/TC-100-main.png';
+import tc211Main from '../assets/TC-211-Main.png';
+import tc2111 from '../assets/TC-211-1.jpg';
+import tc2112 from '../assets/TC-211-2.jpg';
+import tc2113 from '../assets/TC-211-3.jpg';
 
 const tireChangerProducts = [
   {
-    id: 'maxx-series',
-    name: 'Maxx Series',
+    id: 'tc-100-entry-series',
+    name: 'TC-100 Entry Series',
     category: 'Light Duty',
     price: '$8,500',
-    image: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&h=400&fit=crop',
-    description: 'Automated tire changer for light passenger vehicles with precision control',
+    image: tc100Main,
+    description: 'Automated tire changer designed for light passenger vehicles with precision control',
     features: ['Automatic operation', 'LED display', 'Precision chuck'],
   },
   {
-    id: 'rc-series',
-    name: 'RC Series',
+    id: 'tc-211',
+    name: 'TC-211',
     category: 'Standard',
     price: '$9,200',
-    image: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&h=400&fit=crop',
-    description: 'Standard rotating chuck model for professional workshops',
+    image: tc211Main,
+    description: 'Standard model rotating chuck for professional workshops and service centers',
     features: ['Rotating chuck', 'Heavy-duty design', 'Fast operation'],
   },
   {
-    id: 'c-series',
-    name: 'C Series',
+    id: 'tc-211-model-1',
+    name: 'TC-211 Model 1',
     category: 'Compact',
     price: '$7,800',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=400&fit=crop',
-    description: 'Space-saving compact design for smaller workshops',
+    image: tc2111,
+    description: 'Compact tire changer variant with space-saving design for smaller workshops',
     features: ['Space-saving', 'Compact footprint', 'Efficient'],
   },
   {
-    id: 'tilt-back',
-    name: 'Tilt Back Tire Changers',
+    id: 'tc-211-model-2',
+    name: 'TC-211 Model 2',
     category: 'Commercial',
     price: '$12,500',
-    image: 'https://images.unsplash.com/photo-1513558161405-c67fce60579d?w=500&h=400&fit=crop',
-    description: 'Commercial-grade tilting chuck for heavy-duty operations',
+    image: tc2112,
+    description: 'Enhanced commercial-grade model with tilt-back chuck for heavy-duty operations',
     features: ['Tilt-back design', 'Heavy-duty', 'Professional'],
   },
   {
-    id: 'chd-series',
-    name: 'CHD Series',
+    id: 'tc-211-model-3',
+    name: 'TC-211 Model 3',
     category: 'Heavy Duty',
     price: '$14,200',
-    image: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&h=400&fit=crop',
-    description: 'Heavy-duty tire changer for commercial and fleet operations',
+    image: tc2113,
+    description: 'Premium heavy-duty tire changer for commercial and fleet operations',
     features: ['Heavy-duty', 'Fleet-ready', 'Industrial-grade'],
-  },
-  {
-    id: 'hit-series',
-    name: 'HIT Series',
-    category: 'Premium',
-    price: '$15,900',
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&h=400&fit=crop',
-    description: 'Premium tire changer with advanced features and automation',
-    features: ['Premium features', 'Advanced automation', 'Top-tier'],
   },
 ];
 

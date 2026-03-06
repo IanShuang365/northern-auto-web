@@ -18,52 +18,57 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import './CategoryPage.css';
+import slideTop1 from '../assets/SlideTop-1.png';
+import slideTop2 from '../assets/SlideTop-2.png';
+import slideTop3 from '../assets/SlideTop-3.png';
+import toolBox from '../assets/Orange Tool Box.jpg';
+import toolBox1 from '../assets/Tool Box-1.jpg';
 
 const liftsProducts = [
   {
-    id: 'scissor-lifts',
-    name: 'Scissor Lifts',
+    id: 'slidetop-1',
+    name: 'SlideTop Series 1',
     category: 'Vertical',
     price: '$7,200',
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&h=400&fit=crop',
-    description: 'Vertical scissor mechanism lifts with smooth operation',
+    image: slideTop1,
+    description: 'Vertical scissor mechanism lift with smooth and reliable operation',
     features: ['Vertical mechanism', 'Smooth operation', 'Safety certified'],
   },
   {
-    id: '2-post-lifts',
-    name: '2-Post Lifts',
+    id: 'slidetop-2',
+    name: 'SlideTop Series 2',
     category: 'Symmetric',
     price: '$9,500',
-    image: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&h=400&fit=crop',
-    description: 'Symmetric column design for balanced lifting and service access',
+    image: slideTop2,
+    description: 'Symmetric design for balanced lifting and wide service access',
     features: ['Symmetric columns', 'Easy access', 'Professional grade'],
   },
   {
-    id: '4-post-lifts',
-    name: '4-Post Lifts',
+    id: 'slidetop-3',
+    name: 'SlideTop Series 3',
     category: 'Heavy Duty',
     price: '$12,800',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=400&fit=crop',
-    description: 'Four-column design for maximum stability and safety',
-    features: ['Maximum stability', 'Four posts', 'Heavy-duty'],
+    image: slideTop3,
+    description: 'Heavy-duty configuration for maximum stability and safety',
+    features: ['Maximum stability', 'Reinforced design', 'Heavy-duty'],
   },
   {
-    id: 'low-profile-lifts',
-    name: 'Low Profile Lifts',
-    category: 'Compact',
-    price: '$8,900',
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&h=400&fit=crop',
-    description: 'Compact design for workshops with limited ceiling height',
-    features: ['Low profile', 'Ceiling-friendly', 'Space-saving'],
+    id: 'orange-tool-box',
+    name: 'Orange Tool Box',
+    category: 'Storage',
+    price: '$2,890',
+    image: toolBox,
+    description: 'Compact tool storage solution with durable construction',
+    features: ['Durable construction', 'Easy transport', 'Space-saving'],
   },
   {
-    id: 'mobile-columns',
-    name: 'Mobile Columns',
-    category: 'Portable',
-    price: '$15,200',
-    image: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&h=400&fit=crop',
-    description: 'Portable heavy-duty lifting columns for flexible operations',
-    features: ['Portable', 'Mobile design', 'Heavy-duty'],
+    id: 'tool-box-1',
+    name: 'Professional Tool Box',
+    category: 'Storage',
+    price: '$3,500',
+    image: toolBox1,
+    description: 'Professional-grade tool storage with multiple compartments',
+    features: ['Multiple compartments', 'Heavy-duty', 'Professional'],
   },
 ];
 

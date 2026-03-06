@@ -18,52 +18,57 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import './CategoryPage.css';
+import beadBlaster from '../assets/Bead Blaster-6L-Main.jpg';
+import sixL from '../assets/6L-3.jpg';
+import r134a from '../assets/R134A AC Machine.jpg';
+import r1234yf from '../assets/R1234YF Machine Main.png';
+import ms906 from '../assets/MS906PRO.jpg';
 
 const airCompressorProducts = [
   {
-    id: 'maxx-air-compressor',
-    name: 'Maxx Air Compressor',
+    id: 'bead-blaster-6l',
+    name: 'Bead Blaster 6L System',
     category: 'Industrial',
     price: '$4,500',
-    image: 'https://images.unsplash.com/photo-1513558161405-c67fce60579d?w=500&h=400&fit=crop',
-    description: 'High-capacity industrial air compressor for continuous operation',
-    features: ['High capacity', 'Oil-lubricated', 'Industrial-grade'],
+    image: beadBlaster,
+    description: 'High-capacity bead blasting system for continuous surface finishing operations',
+    features: ['High capacity', 'Precision control', 'Industrial-grade'],
   },
   {
-    id: 'cwa-6500-air',
-    name: 'CWA 6500 Air System',
+    id: 'general-purpose-system',
+    name: 'General Purpose System',
     category: 'Professional',
     price: '$5,800',
-    image: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&h=400&fit=crop',
-    description: 'Professional air compression system with advanced filtration',
+    image: sixL,
+    description: 'Professional multi-purpose system with advanced filtration technology',
     features: ['Advanced filtration', 'Professional grade', 'Durable'],
   },
   {
-    id: 'cwa-6000-air',
-    name: 'CWA 6000 Air System',
-    category: 'Commercial',
+    id: 'r134a-ac-machine',
+    name: 'R134A AC Machine',
+    category: 'AC Equipment',
     price: '$4,200',
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&h=400&fit=crop',
-    description: 'Compact commercial air compression system for workshops',
-    features: ['Compact design', 'Commercial-grade', 'Cost-effective'],
+    image: r134a,
+    description: 'Compact commercial AC service machine for R134A refrigerant systems',
+    features: ['Compact design', 'Commercial-grade', 'R134A compatible'],
   },
   {
-    id: 'tread-depth-scanner',
-    name: 'Tread Depth Scanner',
+    id: 'r1234yf-ac-machine',
+    name: 'R1234YF AC Machine',
+    category: 'AC Equipment',
+    price: '$6,500',
+    image: r1234yf,
+    description: 'Modern AC service machine for R1234YF eco-friendly refrigerant systems',
+    features: ['Eco-friendly', 'Digital controls', 'Advanced diagnostics'],
+  },
+  {
+    id: 'ms906pro-scanner',
+    name: 'MS906PRO Scanner',
     category: 'Diagnostic',
-    price: '$1,200',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=400&fit=crop',
-    description: 'Advanced tire tread depth measurement and analysis tool',
-    features: ['Precise measurement', 'Digital display', 'Quick analysis'],
-  },
-  {
-    id: 'bodyguard-system',
-    name: 'Bodyguard System',
-    category: 'Safety',
-    price: '$3,500',
-    image: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&h=400&fit=crop',
-    description: 'Comprehensive workshop safety and ventilation system',
-    features: ['Safety certified', 'Ventilation control', 'Environmental friendly'],
+    price: '$3,200',
+    image: ms906,
+    description: 'Advanced diagnostic scanner for complete vehicle system analysis',
+    features: ['Multi-brand support', 'Real-time diagnostics', 'Cloud connectivity'],
   },
 ];
 

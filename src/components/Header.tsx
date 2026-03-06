@@ -16,7 +16,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import '../components/Header.css';
-import logoImage from '../assets/logo.jpg';
 import { SearchBar } from './SearchBar';
 import { InfoSidebar } from './InfoSidebar';
 
@@ -29,8 +28,11 @@ export const Header: React.FC = () => {
       href: '/tire-changers',
       desc: 'Browse all tire changer models',
       items: [
-        { label: 'Swing Arm Series', href: '/product/swing-arm-series', highlight: false },
-        { label: 'TC-100 Entry Series', href: '/product/tc-100-entry-series', highlight: false },
+        { label: 'TC-100 Entry Series', href: '/product/tc-100', highlight: false },
+        { label: 'TC-211 Professional', href: '/product/tc-211', highlight: false },
+        { label: 'Maxx Series Tire Changer', href: '/product/maxx-series', highlight: false },
+        { label: 'RC Series Tire Changer', href: '/product/rc-series', highlight: false },
+        { label: 'C Series Tire Changer', href: '/product/c-series', highlight: false },
         { label: 'Tilt Back Tire Changers', href: '/product/tilt-back', highlight: false },
       ],
       heavyDesc: 'Heavy Duty',
@@ -44,54 +46,58 @@ export const Header: React.FC = () => {
       href: '/wheel-balancers',
       desc: 'Browse all wheel balancer models',
       items: [
-        { label: 'E900 Diagnostic Balancer', href: '/product/e900', highlight: true },
-        { label: 'Direct Drive Series', href: '/product/direct-drive', highlight: false },
+        { label: 'Elite II Pro Balancer', href: '/product/elite-ii-pro', highlight: true },
+        { label: 'NH-3 Series', href: '/product/nh-3', highlight: false },
+        { label: 'NH-6 Series', href: '/product/nh-6', highlight: false },
         { label: 'Space Saving Wheel Balancers', href: '/product/space-saving', highlight: false },
       ],
       heavyDesc: 'Heavy Duty',
       heavyItems: [
-        { label: 'HD 6450', href: '/product/hd-6450', highlight: false },
+        { label: 'HD 6450 Heavy-Duty', href: '/product/hd-6450', highlight: false },
       ],
     },
     {
-      title: 'AC Machines',
-      href: '/ac-machines',
-      desc: 'Browse all AC machine models',
+      title: 'AC MACHINES',
+      href: '/air-compressors',
+      desc: 'Browse all AC service equipment',
       items: [
-        { label: 'R134A AC Machines', href: '/product/r134a-ac-machines', highlight: false },
-        { label: 'R1234YF AC Machines', href: '/product/r1234yf-ac-machines', highlight: false },
-        { label: 'Dual Gas AC Machines', href: '/product/dual-gas-ac-machines', highlight: false },
-
+        { label: 'R134A AC Machine', href: '/product/r134a', highlight: false },
+        { label: 'R1234YF AC Machine', href: '/product/r1234yf', highlight: false },
+        { label: 'MS906PRO Diagnostic Scanner', href: '/product/ms906pro', highlight: false },
       ],
-      heavyDesc: 'Heavy Duty',
+      heavyDesc: 'Air Systems',
       heavyItems: [
-        { label: 'Bus/Train AC Machines', href: '/product/bus-ac-machines', highlight: false },
+        { label: 'Maxx Air Compressor', href: '/product/maxx-air-compressor', highlight: false },
       ],
     },
     {
-      title: 'AUTEL Scanners',
-      href: '/autel-scanners',
+      title: 'LIFTING EQUIPMENT',
+      href: '/lifts',
       items: [
-        { label: 'All AUTEL Scanners', href: '/product/all-autel-scanners', highlight: false },
+        { label: 'SlideTop Series Lift 1', href: '/product/slideop-lift-1', highlight: false },
+        { label: 'SlideTop Series Lift 2', href: '/product/slideop-lift-2', highlight: false },
+        { label: '2-Post Lift System', href: '/product/2-post-lifts', highlight: false },
+        { label: '4-Post Lift System', href: '/product/4-post-lifts', highlight: false },
+        { label: 'Low-Profile Lift System', href: '/product/low-profile-lifts', highlight: false },
+        { label: 'Mobile Lift Columns', href: '/product/mobile-columns', highlight: false },
       ],
       extra: [
         {
-          title: 'Tool Box',
+          title: 'Storage & Tools',
           href: '/tool-boxes',
           items: [
-            { label: '4 Drawers Mechanics Cart', href: '/product/4-drawers-mechanics-cart', highlight: false },
-            { label: '3 Drawer Tech Cart', href: '/product/3-drawer-tech-cart', highlight: false },
-            { label: '6 Drawer Roller Cabs', href: '/product/6-drawer-roller-cabs', highlight: false },
-            { label: 'Open-Lid Tool Box', href: '/product/open-lid-tool-box', highlight: false },
+            { label: 'Mobile Tool Cart', href: '/product/tool-cart', highlight: false },
+            { label: 'Battery Tester Pro', href: '/product/battery-tester', highlight: false },
+            { label: 'Shop Press 20-Ton', href: '/product/shop-press', highlight: false },
           ],
         },
         {
-          title: 'Body Shop Equipment',
-          href: '/body-shop-equipment',
+          title: 'Alignment & Diagnostics',
+          href: '/wheel-alignment',
           items: [
-            { label: 'Dent Puller Machine', href: '/product/dent-puller-machine', highlight: false },
-            { label: 'Welding Machine', href: '/product/welding-machine', highlight: false },
-            { label: 'Vacuum Sanding Machine', href: '/product/vacuum-sanding-machine', highlight: false },
+            { label: 'CWA 6000 Wheel Aligner', href: '/product/cwa-6000', highlight: false },
+            { label: 'Tread Depth Scanner', href: '/product/tread-depth-scanner', highlight: false },
+            { label: 'Alignment Check Tool', href: '/product/alignment-check', highlight: false },
           ],
         },
       ],
@@ -289,22 +295,6 @@ export const Header: React.FC = () => {
               },
             }}
           >
-            <Box
-              component="img"
-              src={logoImage}
-              alt="BDB Car Tools Logo"
-              sx={{
-                height: 50,
-                width: 50,
-                borderRadius: 1.5,
-                boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
-                  transform: 'translateY(-2px)',
-                },
-              }}
-            />
             <Typography
               variant="h6"
               component="div"
@@ -315,7 +305,7 @@ export const Header: React.FC = () => {
                 letterSpacing: '0.5px',
               }}
             >
-              Northern Auto Parts
+              Northern Industrial
             </Typography>
           </Box>
 

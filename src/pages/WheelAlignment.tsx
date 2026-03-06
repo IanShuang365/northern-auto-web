@@ -18,42 +18,46 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import './CategoryPage.css';
+import balancer1 from '../assets/Balancer-1.jpg';
+import elite3 from '../assets/Elite ii pro-3.jpg';
+import nh6 from '../assets/NH-6-0.jpg';
+import elite4 from '../assets/Elite ii pro-4.jpg';
 
 const alignmentProducts = [
   {
-    id: 'alignment-system-pro',
-    name: 'Alignment System Pro',
+    id: 'balancer-professional',
+    name: 'Professional Balancer System',
     category: 'Premium',
     price: '$16,800',
-    image: 'https://images.unsplash.com/photo-1513558161405-c67fce60579d?w=500&h=400&fit=crop',
-    description: 'Advanced 3D wheel alignment system with wireless sensors',
-    features: ['3D alignment', 'Wireless sensors', 'Digital calibration'],
+    image: balancer1,
+    description: 'Advanced 3D alignment system with precision wheel balancing technology',
+    features: ['3D alignment', 'Precision sensors', 'Digital calibration'],
   },
   {
-    id: 'cwa-6500-alignment',
-    name: 'CWA 6500 Alignment',
+    id: 'elite-pro-3',
+    name: 'Elite Pro Model 3',
     category: 'Professional',
     price: '$12,500',
-    image: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=500&h=400&fit=crop',
-    description: 'Professional alignment equipment with comprehensive diagnostics',
+    image: elite3,
+    description: 'Professional alignment equipment with comprehensive vehicle diagnostics',
     features: ['Comprehensive diagnostics', 'Professional grade', 'High accuracy'],
   },
   {
-    id: 'cwa-6000-alignment',
-    name: 'CWA 6000 Alignment',
+    id: 'nh-6-series',
+    name: 'NH-6 Series',
     category: 'Standard',
     price: '$9,200',
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&h=400&fit=crop',
-    description: 'Standard alignment system for general workshop use',
+    image: nh6,
+    description: 'Standard alignment system for general workshop use and maintenance',
     features: ['Standard alignment', 'User-friendly', 'Reliable'],
   },
   {
-    id: 'alignment-check-kit',
-    name: 'Alignment Check Kit',
+    id: 'elite-pro-4',
+    name: 'Elite Pro Model 4',
     category: 'Portable',
     price: '$3,800',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=400&fit=crop',
-    description: 'Portable alignment checking kit for mobile service',
+    image: elite4,
+    description: 'Portable alignment checking system for mobile service operations',
     features: ['Portable', 'Compact', 'Easy to use'],
   },
 ];
