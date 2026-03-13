@@ -6,10 +6,10 @@ import {
   Typography,
   Button,
 } from '@mui/material';
-import product1 from '../assets/Balancer-1.jpg';
-import product2 from '../assets/Tool Box-1.jpg';
-import product3 from '../assets/product3.jpeg';
-import product4 from '../assets/product4.jpeg';
+import product1 from '../assets/1.jpg';
+import product2 from '../assets/3.jpg';
+import product3 from '../assets/4.jpg';
+import product4 from '../assets/6L-3.jpg';
 
 const heroImages = [product1, product2, product3, product4];
 

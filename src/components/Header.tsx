@@ -43,22 +43,24 @@ export const Header: React.FC = () => {
       ],
     },
     {
-      title: 'AC & DIAGNOSTIC',
+      title: 'AC Machine',
       href: '/air-compressors',
       desc: 'AC service and diagnostic tools',
       items: [
         { label: 'R134A AC Service Machine', href: '/product/r134a-ac-machine', highlight: false },
         { label: 'R1234YF AC Service Machine', href: '/product/r1234yf-ac-machine', highlight: false },
-        { label: 'MS906PRO Advanced Diagnostic Scanner', href: '/product/ms906pro-scanner', highlight: false },
+        { label: 'Dual System AC Machine', href: '/product/dual-system-ac-machine', highlight: false },
       ],
     },
     {
-      title: 'LIFTING EQUIPMENT',
+      title: 'Tool Boxes&Carts',
       href: '/lifts',
       desc: 'Vehicle lifting systems',
       items: [
-        { label: 'SlideTop Lift Series 1', href: '/product/slidetop-lift-1', highlight: false },
-        { label: 'SlideTop Lift Series 2', href: '/product/slidetop-lift-2', highlight: false },
+        { label: 'SlideTop Tool Cart', href: '/product/slidetop-lift-1', highlight: false },
+        { label: '4-Drawer Tech Cart', href: '/product/slidetop-lift-2', highlight: false },
+        { label: '6-Drawer Full-Bank Service Cart', href: '/product/slidetop-lift-3', highlight: false },
+        { label: '3-Drawer Mobile Cart', href: '/product/slidetop-lift-4', highlight: false },
       ],
     },
   ];
