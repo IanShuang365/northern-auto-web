@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   AppBar,
@@ -18,52 +18,34 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import '../components/Header.css';
 import { SearchBar } from './SearchBar';
 import { InfoSidebar } from './InfoSidebar';
+import { products } from '../data/products';
 
 export const Header: React.FC = () => {
 
-  // Mega menu data structure
-  const megaMenuColumns = [
-    {
-      title: 'TIRE CHANGERS',
-      href: '/tire-changers',
-      desc: 'Tire changing equipment',
-      items: [
-        { label: 'TC-100 Entry Series Tire Changer', href: '/product/tc-100-tire-changer', highlight: false },
-        { label: 'TC-211 Professional Tire Changer', href: '/product/tc-211-tire-changer', highlight: false },
-      ],
-    },
-    {
-      title: 'WHEEL BALANCERS',
-      href: '/wheel-balancers',
-      desc: 'Precision wheel balancing systems',
-      items: [
-        { label: 'Elite II Pro Wheel Balancer', href: '/product/elite-ii-pro', highlight: true },
-        { label: 'NH-3 Series Wheel Balancer', href: '/product/nh-3-series', highlight: false },
-        { label: 'NH-6 Series Wheel Balancer', href: '/product/nh-6-series', highlight: false },
-      ],
-    },
-    {
-      title: 'AC Machine',
-      href: '/air-compressors',
-      desc: 'AC service and diagnostic tools',
-      items: [
-        { label: 'R134A AC Service Machine', href: '/product/r134a-ac-machine', highlight: false },
-        { label: 'R1234YF AC Service Machine', href: '/product/r1234yf-ac-machine', highlight: false },
-        { label: 'Dual System AC Machine', href: '/product/dual-system-ac-machine', highlight: false },
-      ],
-    },
-    {
-      title: 'Tool Boxes&Carts',
-      href: '/lifts',
-      desc: 'Vehicle lifting systems',
-      items: [
-        { label: 'SlideTop Tool Cart', href: '/product/slidetop-lift-1', highlight: false },
-        { label: '4-Drawer Tech Cart', href: '/product/slidetop-lift-2', highlight: false },
-        { label: '6-Drawer Full-Bank Service Cart', href: '/product/slidetop-lift-3', highlight: false },
-        { label: '3-Drawer Mobile Cart', href: '/product/slidetop-lift-4', highlight: false },
-      ],
-    },
-  ];
+  // Generate mega menu from products grouped by category
+  const megaMenuColumns = useMemo(() => {
+    const categoryMap: { [key: string]: typeof products } = {};
+    
+    // Group products by category
+    products.forEach(product => {
+      if (!categoryMap[product.category]) {
+        categoryMap[product.category] = [];
+      }
+      categoryMap[product.category].push(product);
+    });
+
+    // Convert to menu structure
+    return Object.entries(categoryMap).map(([category, categoryProducts]) => ({
+      title: category.toUpperCase(),
+      href: '#',
+      desc: `${categoryProducts.length} product${categoryProducts.length !== 1 ? 's' : ''}`,
+      items: categoryProducts.map(product => ({
+        label: product.title,
+        href: `/product/${product.slug}`,
+        highlight: false,
+      })),
+    }));
+  }, []);
 
   const navLinks = [
     // Products will be handled as a dropdown
@@ -316,13 +298,13 @@ export const Header: React.FC = () => {
                   <div className="mega-menu-panel">
                     {megaMenuColumns.map((col) => (
                       <div className="mega-menu-col" key={col.title}>
-                        <a href={col.href} className="mega-menu-title menu--item-title hover:text-red-700" onClick={() => setMegaOpen(false)}>{col.title}</a>
+                        <div className="mega-menu-title" style={{ color: '#b71c1c' }}>{col.title}</div>
                         {col.desc && <p className="mega-menu-desc">{col.desc}</p>}
                         {col.items && (
                           <ul className="mega-menu-list">
                             {col.items.map((item) => (
                               <li key={item.label} style={{ lineHeight: '1.4em' }}>
-                                <Link component={RouterLink} to={item.href} className="mega-menu-link" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
+                                <Link component={RouterLink} to={item.href} className="mega-menu-link" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: '#222' }}>
                                   {item.highlight ? <span style={{ color: '#AE282E', fontWeight: 700 }}>NEW </span> : null}
                                   {item.label}
                                 </Link>
@@ -330,28 +312,6 @@ export const Header: React.FC = () => {
                             ))}
                           </ul>
                         )}
-                        {col.heavyDesc && <p className="mega-menu-desc">{col.heavyDesc}</p>}
-                        {col.heavyItems && (
-                          <ul className="mega-menu-list">
-                            {col.heavyItems.map((item) => (
-                              <li key={item.label} style={{ lineHeight: '1.4em' }}>
-                                <Link component={RouterLink} to={item.href} className="mega-menu-link" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>{item.label}</Link>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                        {col.extra && col.extra.map((ex) => (
-                          <React.Fragment key={ex.title}>
-                            <Link component={RouterLink} to={ex.href} className="mega-menu-title menu--item-title hover:text-red-700" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>{ex.title}</Link>
-                            <ul className="mega-menu-list">
-                              {ex.items.map((item) => (
-                                <li key={item.label} style={{ lineHeight: '1.4em' }}>
-                                  <Link component={RouterLink} to={item.href} className="mega-menu-link" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>{item.label}</Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </React.Fragment>
-                        ))}
                       </div>
                     ))}
                   </div>

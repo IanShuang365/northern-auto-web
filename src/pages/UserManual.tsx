@@ -10,10 +10,10 @@ import {
 import DownloadIcon from '@mui/icons-material/Download';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import acMachineManual from '../assets/AC Machine User Manual.pdf';
-import tbl510Manual from '../assets/TBL-510 User Manual.pdf';
-import tbl620Manual from '../assets/TBL-620 User Manual.pdf';
-import hdac50cvManual from '../assets/UserManual-HDAC-50CV.pdf';
+import acMachineManual from '../assets/Other/AC Machine User Manual.pdf';
+import tbl510Manual from '../assets/Other/TBL-510 User Manual.pdf';
+import tbl620Manual from '../assets/Other/TBL-620 User Manual.pdf';
+import hdac50cvManual from '../assets/Other/UserManual-HDAC-50CV.pdf';
 import './UserManual.css';
 
 export const UserManual: React.FC = () => {
