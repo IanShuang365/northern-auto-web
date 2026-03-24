@@ -384,6 +384,106 @@ Engineered for maximum stability and safety in commercial environments.`,
     ],
     category: 'Lifts & Equipment',
   },
+  {
+    id: '11',
+    slug: 'upcoming-tire-changer',
+    title: 'Upcoming Tire Changer Model',
+    shortDescription: 'Next-generation tire changer with advanced automation',
+    longDescription: `We are developing an advanced tire changer that combines the latest automation technology with user-friendly operation. This innovative equipment will set new standards for tire service efficiency and precision.
+
+More details and specifications will be available soon.`,
+    image: '',
+    price: 'Coming Soon',
+    specifications: [
+      'To be announced',
+    ],
+    features: [
+      'Advanced automation',
+      'Next generation technology',
+      'Coming soon',
+    ],
+    benefits: [
+      'Enhanced efficiency',
+      'Professional results',
+      'Innovation',
+    ],
+    category: 'Tire Service',
+  },
+  {
+    id: '12',
+    slug: 'upcoming-product-1',
+    title: 'Upcoming Product 1',
+    shortDescription: 'New innovation coming soon to our product lineup',
+    longDescription: `We are working on bringing you the latest in automotive equipment technology. This exciting new product will revolutionize your workshop workflow and efficiency.
+
+Stay tuned for the official release and specifications.`,
+    image: '',
+    price: 'Coming Soon',
+    specifications: [
+      'To be announced',
+    ],
+    features: [
+      'Innovative technology',
+      'Professional grade',
+      'Coming soon',
+    ],
+    benefits: [
+      'Increased efficiency',
+      'Professional results',
+      'Next generation',
+    ],
+    category: 'Upcoming',
+  },
+  {
+    id: '13',
+    slug: 'upcoming-product-2',
+    title: 'Upcoming Product 2',
+    shortDescription: 'Next-generation solution for modern workshops',
+    longDescription: `We are developing an advanced solution designed to meet the evolving needs of today's automotive service centers. This product will set new standards for performance and reliability.
+
+More details will be revealed soon.`,
+    image: '',
+    price: 'Coming Soon',
+    specifications: [
+      'To be announced',
+    ],
+    features: [
+      'Advanced features',
+      'Future-ready',
+      'Coming soon',
+    ],
+    benefits: [
+      'Enhanced productivity',
+      'Professional capabilities',
+      'Modern technology',
+    ],
+    category: 'Upcoming',
+  },
+  {
+    id: '14',
+    slug: 'upcoming-product-3',
+    title: 'Upcoming Product 3',
+    shortDescription: 'Premium equipment innovation in development',
+    longDescription: `Our team is crafting a premium product that combines cutting-edge technology with user-friendly design. We are excited to bring this to the market soon.
+
+Check back for exciting announcements and detailed product information.`,
+    image: '',
+    price: 'Coming Soon',
+    specifications: [
+      'To be announced',
+    ],
+    features: [
+      'Premium quality',
+      'Innovative design',
+      'Coming soon',
+    ],
+    benefits: [
+      'Superior performance',
+      'Professional grade',
+      'New possibilities',
+    ],
+    category: 'Upcoming',
+  },
 ];
 
 

@@ -66,7 +66,7 @@ export const ProductsSection: React.FC = () => {
         </Box>
         
         <Grid container spacing={3.5}>
-          {products.slice(0, 8).map((product) => (
+          {products.slice(0, 11).map((product) => (
             <Grid item xs={12} sm={6} md={3} key={product.id}>
               <Card
                 sx={{
