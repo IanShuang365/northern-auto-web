@@ -330,28 +330,6 @@ export const Header: React.FC = () => {
                             ))}
                           </ul>
                         )}
-                        {col.heavyDesc && <p className="mega-menu-desc">{col.heavyDesc}</p>}
-                        {col.heavyItems && (
-                          <ul className="mega-menu-list">
-                            {col.heavyItems.map((item) => (
-                              <li key={item.label} style={{ lineHeight: '1.4em' }}>
-                                <Link component={RouterLink} to={item.href} className="mega-menu-link" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>{item.label}</Link>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                        {col.extra && col.extra.map((ex) => (
-                          <React.Fragment key={ex.title}>
-                            <Link component={RouterLink} to={ex.href} className="mega-menu-title menu--item-title hover:text-red-700" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>{ex.title}</Link>
-                            <ul className="mega-menu-list">
-                              {ex.items.map((item) => (
-                                <li key={item.label} style={{ lineHeight: '1.4em' }}>
-                                  <Link component={RouterLink} to={item.href} className="mega-menu-link" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>{item.label}</Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </React.Fragment>
-                        ))}
                       </div>
                     ))}
                   </div>
