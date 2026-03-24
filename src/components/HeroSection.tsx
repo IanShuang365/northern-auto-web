@@ -6,10 +6,10 @@ import {
   Typography,
   Button,
 } from '@mui/material';
-import product1 from '../assets/Other/1.jpg';
-import product2 from '../assets/Other/3.jpg';
-import product3 from '../assets/Other/4.jpg';
-import product4 from '../assets/Other/6L-3.jpg';
+import product1 from '../assets/1.jpg';
+import product2 from '../assets/3.jpg';
+import product3 from '../assets/4.jpg';
+import product4 from '../assets/6L-3.jpg';
 
 const heroImages = [product1, product2, product3, product4];
 
@@ -45,9 +45,8 @@ export const HeroSection: React.FC = () => {
           height: '100%',
           zIndex: 1,
           backgroundImage: `url(${heroImages[bgIndex]})`,
-          backgroundSize: 'contain',
+          backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
           filter: 'brightness(0.7)',
           transition: 'background-image 1s cubic-bezier(0.4,0,0.2,1)',
         }}

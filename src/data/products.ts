@@ -1,13 +1,13 @@
-import elitePro from '../assets/Diagnostics/Elite ii pro.jpg';
-import nh3 from '../assets/Wheel-Balancers/NH-3-0.jpg';
-import nh6 from '../assets/Wheel-Balancers/NH-6-0.jpg';
-import ms906 from '../assets/Diagnostics/MS906PRO.jpg';
-import tc100 from '../assets/Tire-Changers/TC-100-main.png';
-import tc211 from '../assets/Tire-Changers/TC-211-Main.png';
-import r134a from '../assets/AC-Machines/R134A AC Machine.jpg';
-import r1234yf from '../assets/AC-Machines/R1234YF Machine Main.png';
-import slideTop1 from '../assets/Tire-Changers/SlideTop-1.png';
-import slideTop2 from '../assets/Tire-Changers/SlideTop-2.png';
+import elitePro from '../assets/Elite ii pro.jpg';
+import nh3 from '../assets/NH-3-0.jpg';
+import nh6 from '../assets/NH-6-0.jpg';
+import ms906 from '../assets/MS906PRO.jpg';
+import tc100 from '../assets/TC-100-main.png';
+import tc211 from '../assets/TC-211-Main.png';
+import r134a from '../assets/R134A AC Machine.jpg';
+import r1234yf from '../assets/R1234YF Machine Main.png';
+import slideTop1 from '../assets/SlideTop-1.png';
+import slideTop2 from '../assets/SlideTop-2.png';
 
 export interface ProductData {
   id: string;
@@ -383,78 +383,6 @@ Engineered for maximum stability and safety in commercial environments.`,
       'Best in class',
     ],
     category: 'Lifts & Equipment',
-  },
-  {
-    id: '11',
-    slug: 'dual-system-ac-machine',
-    title: 'Dual System AC Service Machine',
-    shortDescription: 'Advanced AC service equipment for both R134A and R1234YF systems',
-    longDescription: `The Dual System AC Machine is the ultimate versatile solution for shops requiring compatibility with both legacy and modern refrigerant systems. Featuring intelligent switching and integrated diagnostics, this machine automatically adapts to service either R134A or R1234YF refrigerant systems.
-
-Perfect for progressive shops that need flexibility without investing in multiple machines.`,
-    image: r134a,
-    price: '$7,800',
-    specifications: [
-      'Refrigerant: R134A & R1234YF',
-      'Recovery Capacity: 40 lbs',
-      'Recycling Rate: 70 lbs/hour',
-      'Display: Digital touchscreen',
-      'Power: 220V, single phase',
-      'Dimensions: 40" W x 28" D x 46" H',
-    ],
-    features: [
-      'Dual refrigerant support',
-      'Automatic detection',
-      'Advanced diagnostics',
-      'Quick connections',
-      'Smart switching',
-      'Professional grade',
-    ],
-    benefits: [
-      'Universal compatibility',
-      'Future proof investment',
-      'Fast service time',
-      'One machine solution',
-      'Professional results',
-      'Environmentally compliant',
-    ],
-    category: 'AC Service',
-  },
-  {
-    id: '12',
-    slug: 'tc-312-commercial-tire-changer',
-    title: 'TC-312 Commercial Tire Changer',
-    shortDescription: 'Heavy-duty commercial tire changer for high-volume operations',
-    longDescription: `The TC-312 Commercial represents the ultimate in tire changing performance for demanding commercial environments. Built with reinforced components and advanced automation, this machine handles large diameter wheels and high-volume tire service operations with exceptional speed and reliability.
-
-Engineered for commercial tire shops requiring maximum throughput and professional-grade durability.`,
-    image: tc211,
-    price: '$11,500',
-    specifications: [
-      'Max Wheel Diameter: 35 inches',
-      'Min Wheel Diameter: 14 inches',
-      'Chuck Capacity: 20-60 lbs',
-      'Power: 220V, 3-phase',
-      'Air Pressure: 6-8 bar',
-      'Dimensions: 78" W x 40" D x 54" H',
-    ],
-    features: [
-      'Commercial-grade construction',
-      'Rotary turntable',
-      'Bead-breaking jaw',
-      'Pneumatic lifting',
-      'Quick-change chuck',
-      'Heavy-duty motor',
-    ],
-    benefits: [
-      'Maximum productivity',
-      'Handles large wheels',
-      'High-volume capable',
-      'Exceptional reliability',
-      'Professional grade',
-      'Long service life',
-    ],
-    category: 'Tire Service',
   },
 ];
 

@@ -7,7 +7,12 @@ import {
   Grid,
   Button,
   Card,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
 } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { getProductById } from '../data/products';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
@@ -50,97 +55,32 @@ export const ProductDetail: React.FC = () => {
       {/* Main Content Section */}
       <Box sx={{ bgcolor: '#fafafa', pt: 8, pb: 12 }}>
         <Container maxWidth="lg">
-          {/* Title Section */}
-          <Box sx={{ mb: 8 }}>
-            <Typography
-              variant="h2"
-              sx={{
-                fontWeight: 700,
-                color: '#1a1a1a',
-                mb: 2,
-                fontSize: { xs: '2rem', md: '2.5rem' },
-                lineHeight: 1.2,
-              }}
-            >
-              {product.title}
-            </Typography>
-
-            <Box
-              sx={{
-                width: 60,
-                height: 3,
-                bgcolor: '#d32f2f',
-                borderRadius: '2px',
-                mb: 6,
-              }}
-            />
-
-            {/* Specifications Section on Top */}
-            <Typography
-              variant="h5"
-              sx={{
-                fontWeight: 600,
-                color: '#1a1a1a',
-                mb: 3,
-                fontSize: '1.2rem',
-                letterSpacing: '0.5px',
-                textTransform: 'uppercase',
-              }}
-            >
-              Specifications
-            </Typography>
-            <Grid container spacing={3} sx={{ mb: 8 }}>
-              {product.specifications.map((spec, idx) => (
-                <Grid item xs={12} sm={6} md={3} key={idx}>
-                  <Card
-                    sx={{
-                      height: '100%',
-                      background: '#fff',
-                      border: '1px solid #f0f0f0',
-                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
-                      borderRadius: 1.5,
-                      p: 2,
-                      transition: 'all 0.3s ease',
-                      '&:hover': {
-                        boxShadow: '0 4px 16px rgba(211, 47, 47, 0.15)',
-                        borderColor: '#d32f2f',
-                      },
-                    }}
-                  >
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        fontSize: '0.9rem',
-                        color: '#555',
-                        fontWeight: 500,
-                        lineHeight: 1.6,
-                      }}
-                    >
-                      {spec}
-                    </Typography>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-
-          {/* Description Left, Image Right */}
-          <Grid container spacing={8} alignItems="flex-start" sx={{ mb: 16 }}>
-            {/* Left: Description */}
+          <Grid container spacing={8} alignItems="center" sx={{ mb: 16 }}>
+            {/* Left: Description & Specs */}
             <Grid item xs={12} md={6}>
               <Box>
                 <Typography
-                  variant="h5"
+                  variant="h2"
                   sx={{
-                    fontWeight: 600,
+                    fontWeight: 700,
                     color: '#1a1a1a',
-                    mb: 3,
-                    fontSize: '1.1rem',
-                    letterSpacing: '0.5px',
+                    mb: 2,
+                    fontSize: { xs: '2rem', md: '2.5rem' },
+                    lineHeight: 1.2,
                   }}
                 >
-                  Overview
+                  {product.title}
                 </Typography>
+
+                <Box
+                  sx={{
+                    width: 60,
+                    height: 3,
+                    bgcolor: '#d32f2f',
+                    borderRadius: '2px',
+                    mb: 4,
+                  }}
+                />
 
                 <Typography
                   variant="body1"
@@ -148,12 +88,43 @@ export const ProductDetail: React.FC = () => {
                     color: '#555',
                     mb: 6,
                     lineHeight: 1.8,
-                    fontSize: '1.05rem',
+                    fontSize: '1.1rem',
                     fontWeight: 400,
                   }}
                 >
                   {product.longDescription}
                 </Typography>
+
+                <Box sx={{ mb: 6 }}>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 600,
+                      color: '#1a1a1a',
+                      mb: 3,
+                      fontSize: '1rem',
+                      letterSpacing: '0.5px',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    Key Specifications
+                  </Typography>
+                  <List disablePadding>
+                    {product.specifications.slice(0, 4).map((spec, idx) => (
+                      <ListItem key={idx} disableGutters sx={{ py: 1 }}>
+                        <ListItemIcon sx={{ minWidth: 28, color: '#d32f2f' }}>
+                          <CheckCircleIcon sx={{ fontSize: '1rem' }} />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={spec}
+                          primaryTypographyProps={{
+                            sx: { fontSize: '0.95rem', color: '#555', fontWeight: 500 },
+                          }}
+                        />
+                      </ListItem>
+                    ))}
+                  </List>
+                </Box>
 
                 {/* CTA Button */}
                 <Button
@@ -291,6 +262,64 @@ export const ProductDetail: React.FC = () => {
                       {feature}
                     </Typography>
                   </Box>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+
+        {/* Specifications Display */}
+        <Box sx={{ mb: 12 }}>
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 700,
+              color: '#1a1a1a',
+              mb: 2,
+              fontSize: '2rem',
+            }}
+          >
+            Specifications
+          </Typography>
+          <Box
+            sx={{
+              width: 60,
+              height: 3,
+              bgcolor: '#d32f2f',
+              borderRadius: '2px',
+              mb: 8,
+            }}
+          />
+          <Grid container spacing={4}>
+            {product.specifications.map((spec, idx) => (
+              <Grid item xs={12} sm={6} md={4} key={idx}>
+                <Card
+                  sx={{
+                    height: '100%',
+                    background: '#fff',
+                    border: '1px solid #f0f0f0',
+                    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)',
+                    borderRadius: 2,
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    p: 3.5,
+                    '&:hover': {
+                      transform: 'translateY(-6px)',
+                      boxShadow: '0 8px 28px rgba(0, 0, 0, 0.12)',
+                      borderColor: '#d32f2f',
+                    },
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: '#555',
+                      fontWeight: 500,
+                      fontSize: '0.95rem',
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    {spec}
+                  </Typography>
                 </Card>
               </Grid>
             ))}
