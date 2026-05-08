@@ -17,6 +17,29 @@ const parseSpec = (spec: string): { label: string; value: string } => {
   return { label: spec, value: '' };
 };
 
+const FAQ_ITEMS = [
+  {
+    q: 'What warranty does this product come with?',
+    a: 'All our equipment includes a manufacturer warranty covering parts and workmanship. Contact us for the specific warranty terms on this model, as coverage may vary.',
+  },
+  {
+    q: 'Do you offer installation and operator training?',
+    a: 'Yes. Our technicians handle delivery, installation, and on-site training so your team is confident and productive from day one.',
+  },
+  {
+    q: 'What financing or payment options are available?',
+    a: 'We accept wire transfer, business check, and offer flexible financing plans. Reach out to our sales team to find the best fit for your budget.',
+  },
+  {
+    q: 'How long does delivery take?',
+    a: 'Lead times are typically 2–4 weeks depending on your location and current stock. Call us for a specific estimate on this model.',
+  },
+  {
+    q: 'Is after-sales service and spare parts support available?',
+    a: 'Absolutely. We maintain a dedicated service team and parts inventory to keep your equipment performing at peak efficiency long after purchase.',
+  },
+];
+
 interface ImageGalleryProps {
   images: string[];
   title: string;
@@ -75,6 +98,7 @@ export const ProductDetail: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
   const navigate = useNavigate();
   const product = productId ? getProductById(productId) : undefined;
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   if (!product) {
     return (
@@ -86,11 +110,7 @@ export const ProductDetail: React.FC = () => {
               <Typography variant="h4" color="error" sx={{ mb: 2 }}>
                 Product Not Found
               </Typography>
-              <Button
-                variant="contained"
-                onClick={() => navigate('/')}
-                sx={{ bgcolor: '#d32f2f' }}
-              >
+              <Button variant="contained" onClick={() => navigate('/')} sx={{ bgcolor: '#d32f2f' }}>
                 Back to Home
               </Button>
             </Box>
@@ -102,6 +122,7 @@ export const ProductDetail: React.FC = () => {
   }
 
   const galleryImages = product.images?.length ? product.images : product.image ? [product.image] : [];
+  const isComingSoon = product.price === 'Coming Soon';
 
   return (
     <>
@@ -147,12 +168,20 @@ export const ProductDetail: React.FC = () => {
               <h1 className="pd-hero__title">{product.title}</h1>
               <p className="pd-hero__desc">{product.longDescription}</p>
 
+              {/* Price */}
+              <div className="pd-price-block">
+                <span className="pd-price-block__label">Starting Price</span>
+                <span className={`pd-price-block__value${isComingSoon ? ' pd-price-block__value--soon' : ''}`}>
+                  {product.price}
+                </span>
+              </div>
+
               <div className="pd-hero__actions">
                 <a href="tel:+1-800-688-6359" className="pd-btn pd-btn--primary">
-                  Call for a Quote
+                  &#128222;&nbsp; Call Now
                 </a>
                 <a href="/contact" className="pd-btn pd-btn--secondary">
-                  Contact Us
+                  Get a Quote
                 </a>
               </div>
 
@@ -205,7 +234,6 @@ export const ProductDetail: React.FC = () => {
       <section className="pd-section">
         <Container maxWidth="lg">
           <div className="pd-fb-grid">
-            {/* Features */}
             <div>
               <div className="pd-section__header">
                 <h2 className="pd-section__title">Features</h2>
@@ -221,7 +249,6 @@ export const ProductDetail: React.FC = () => {
               </ul>
             </div>
 
-            {/* Benefits */}
             <div>
               <div className="pd-section__header">
                 <h2 className="pd-section__title">Business Benefits</h2>
@@ -240,21 +267,43 @@ export const ProductDetail: React.FC = () => {
         </Container>
       </section>
 
-      {/* CTA Banner */}
-      <section className="pd-cta">
+      {/* Q&A Section */}
+      <section className="pd-section pd-section--gray">
         <Container maxWidth="lg">
-          <div className="pd-cta__inner">
-            <div>
-              <h2 className="pd-cta__title">Ready to Get Started?</h2>
-              <p className="pd-cta__sub">
-                Contact our team today — we're happy to answer questions, provide specs, and arrange a demo.
-              </p>
-            </div>
-            <div className="pd-cta__actions">
-              <a href="tel:+1-800-688-6359" className="pd-btn pd-btn--primary pd-btn--lg">
+          <div className="pd-section__header">
+            <h2 className="pd-section__title">Frequently Asked Questions</h2>
+            <div className="pd-section__rule" />
+          </div>
+          <div className="pd-faq">
+            {FAQ_ITEMS.map((item, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div key={idx} className={`pd-faq__item${isOpen ? ' pd-faq__item--open' : ''}`}>
+                  <button
+                    className="pd-faq__question"
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    aria-expanded={isOpen}
+                  >
+                    <span>{item.q}</span>
+                    <span className="pd-faq__icon">{isOpen ? '−' : '+'}</span>
+                  </button>
+                  {isOpen && (
+                    <div className="pd-faq__answer">
+                      <p>{item.a}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="pd-faq__cta">
+            <p>Still have questions? We're here to help.</p>
+            <div className="pd-faq__cta-actions">
+              <a href="tel:+1-800-688-6359" className="pd-btn pd-btn--primary">
                 &#128222;&nbsp; 1-800-688-6359
               </a>
-              <a href="/contact" className="pd-btn pd-btn--outline pd-btn--lg">
+              <a href="/contact" className="pd-btn pd-btn--secondary">
                 Send a Message
               </a>
             </div>

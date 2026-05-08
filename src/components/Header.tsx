@@ -43,24 +43,29 @@ export const Header: React.FC = () => {
       ],
     },
     {
-      title: 'AC Machine',
+      title: 'AC SERVICE',
       href: '/air-compressors',
-      desc: 'AC service and diagnostic tools',
+      desc: 'AC service machines',
       items: [
         { label: 'R134A AC Service Machine', href: '/product/r134a-ac-machine', highlight: false },
         { label: 'R1234YF AC Service Machine', href: '/product/r1234yf-ac-machine', highlight: false },
-        { label: 'Dual System AC Machine', href: '/product/dual-system-ac-machine', highlight: false },
       ],
     },
     {
-      title: 'Tool Boxes&Carts',
+      title: 'DIAGNOSTIC TOOLS',
+      href: '/products',
+      desc: 'Vehicle diagnostic systems',
+      items: [
+        { label: 'MS906PRO Advanced Diagnostic Scanner', href: '/product/ms906pro-scanner', highlight: false },
+      ],
+    },
+    {
+      title: 'LIFTS & EQUIPMENT',
       href: '/lifts',
       desc: 'Vehicle lifting systems',
       items: [
-        { label: 'SlideTop Tool Cart', href: '/product/slidetop-lift-1', highlight: false },
-        { label: '4-Drawer Tech Cart', href: '/product/slidetop-lift-2', highlight: false },
-        { label: '6-Drawer Full-Bank Service Cart', href: '/product/slidetop-lift-3', highlight: false },
-        { label: '3-Drawer Mobile Cart', href: '/product/slidetop-lift-4', highlight: false },
+        { label: 'SlideTop Lift Series 1', href: '/product/slidetop-lift-1', highlight: false },
+        { label: 'SlideTop Lift Series 2', href: '/product/slidetop-lift-2', highlight: false },
       ],
     },
   ];
@@ -316,14 +321,14 @@ export const Header: React.FC = () => {
                   <div className="mega-menu-panel">
                     {megaMenuColumns.map((col) => (
                       <div className="mega-menu-col" key={col.title}>
-                        <a href={col.href} className="mega-menu-title menu--item-title hover:text-red-700" onClick={() => setMegaOpen(false)}>{col.title}</a>
+                        <a href={col.href} className="mega-menu-title" onClick={() => setMegaOpen(false)}>{col.title}</a>
                         {col.desc && <p className="mega-menu-desc">{col.desc}</p>}
                         {col.items && (
                           <ul className="mega-menu-list">
                             {col.items.map((item) => (
                               <li key={item.label} style={{ lineHeight: '1.4em' }}>
-                                <Link component={RouterLink} to={item.href} className="mega-menu-link" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
-                                  {item.highlight ? <span style={{ color: '#AE282E', fontWeight: 700 }}>NEW </span> : null}
+                                <Link component={RouterLink} to={item.href} className="mega-menu-link" onClick={() => setMegaOpen(false)} sx={{ display: 'block', textDecoration: 'none', color: '#222', fontWeight: 600, fontSize: '0.92rem', '&:hover': { color: '#b71c1c', paddingLeft: '0.5em' } }}>
+                                  {item.highlight ? <span style={{ color: '#d32f2f', fontWeight: 700 }}>NEW </span> : null}
                                   {item.label}
                                 </Link>
                               </li>

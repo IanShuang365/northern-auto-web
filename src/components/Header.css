@@ -47,33 +47,44 @@
 .mega-menu-btn {
   display: inline-flex;
   align-items: center;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #b71c1c;
-  background: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  background: transparent;
   border: none;
-  border-bottom: 2px solid #b71c1c;
-  padding: 0.5rem 1.2rem 0.3rem 1.2rem;
+  padding: 0.5rem 0 0.3rem 0;
   cursor: pointer;
   outline: none;
-  transition: color 0.2s, border-color 0.2s;
-  box-shadow: 0 2px 8px rgba(211,47,47,0.08);
+  transition: color 0.2s;
+  position: relative;
   z-index: 1201;
 }
+.mega-menu-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ffeb3b;
+  transition: width 0.3s ease;
+}
+.mega-menu-btn:hover::after,
+.mega-menu-btn[aria-expanded="true"]::after {
+  width: 100%;
+}
 .mega-menu-btn svg {
-  margin-left: 0.5rem;
-  width: 1.2em;
-  height: 1.2em;
+  margin-left: 0.4rem;
+  width: 1.1em;
+  height: 1.1em;
   transition: transform 0.2s;
 }
 .mega-menu-btn[aria-expanded="true"] svg {
   transform: rotate(180deg);
 }
-.mega-menu-btn[aria-expanded="true"],
-.mega-menu-btn:hover {
-  background: #fff;
-  color: #b71c1c;
-  border-bottom: 2px solid #b71c1c;
+.mega-menu-btn:hover,
+.mega-menu-btn[aria-expanded="true"] {
+  color: #ffeb3b;
 }
 .mega-menu-outer {
   position: fixed;
