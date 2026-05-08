@@ -1,17 +1,75 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import {
-  Box,
-  Container,
-  Typography,
-  Grid,
-  Button,
-  Card,
-} from '@mui/material';
+import React, { useState } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { Box, Container, Typography, Button, Chip } from '@mui/material';
 import { getProductById } from '../data/products';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import './ProductDetail.css';
+
+const parseSpec = (spec: string): { label: string; value: string } => {
+  const colonIdx = spec.indexOf(':');
+  if (colonIdx > 0) {
+    return {
+      label: spec.substring(0, colonIdx).trim(),
+      value: spec.substring(colonIdx + 1).trim(),
+    };
+  }
+  return { label: spec, value: '' };
+};
+
+interface ImageGalleryProps {
+  images: string[];
+  title: string;
+}
+
+const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const validImages = images.filter(Boolean);
+
+  if (validImages.length === 0) {
+    return (
+      <div className="gallery-placeholder">
+        <span>Image Coming Soon</span>
+      </div>
+    );
+  }
+
+  const prev = () => setActiveIdx(i => (i - 1 + validImages.length) % validImages.length);
+  const next = () => setActiveIdx(i => (i + 1) % validImages.length);
+
+  return (
+    <div className="image-gallery">
+      <div className="gallery-main">
+        <img src={validImages[activeIdx]} alt={`${title} — view ${activeIdx + 1}`} />
+        {validImages.length > 1 && (
+          <>
+            <button className="gallery-arrow gallery-arrow--prev" onClick={prev} aria-label="Previous image">
+              &#8249;
+            </button>
+            <button className="gallery-arrow gallery-arrow--next" onClick={next} aria-label="Next image">
+              &#8250;
+            </button>
+            <div className="gallery-counter">{activeIdx + 1} / {validImages.length}</div>
+          </>
+        )}
+      </div>
+      {validImages.length > 1 && (
+        <div className="gallery-thumbs">
+          {validImages.map((img, idx) => (
+            <button
+              key={idx}
+              className={`gallery-thumb${idx === activeIdx ? ' gallery-thumb--active' : ''}`}
+              onClick={() => setActiveIdx(idx)}
+              aria-label={`View image ${idx + 1}`}
+            >
+              <img src={img} alt={`${title} thumbnail ${idx + 1}`} />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export const ProductDetail: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -43,381 +101,166 @@ export const ProductDetail: React.FC = () => {
     );
   }
 
+  const galleryImages = product.images?.length ? product.images : product.image ? [product.image] : [];
+
   return (
     <>
       <Header />
 
-      {/* Main Content Section */}
-      <Box sx={{ bgcolor: '#fafafa', pt: 8, pb: 12 }}>
+      {/* Breadcrumb */}
+      <div className="pd-breadcrumb">
         <Container maxWidth="lg">
-          {/* Specifications Display - Top */}
-          <Box sx={{ mb: 16 }}>
-            <Typography
-              variant="h3"
-              sx={{
-                fontWeight: 700,
-                color: '#1a1a1a',
-                mb: 2,
-                fontSize: '2rem',
-              }}
-            >
-              Specifications
-            </Typography>
-            <Box
-              sx={{
-                width: 60,
-                height: 3,
-                bgcolor: '#d32f2f',
-                borderRadius: '2px',
-                mb: 8,
-              }}
-            />
-            <Grid container spacing={4}>
-              {product.specifications.map((spec, idx) => (
-                <Grid item xs={12} sm={6} md={4} key={idx}>
-                  <Card
-                    sx={{
-                      height: '100%',
-                      background: '#fff',
-                      border: '1px solid #f0f0f0',
-                      boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)',
-                      borderRadius: 2,
-                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                      p: 3.5,
-                      '&:hover': {
-                        transform: 'translateY(-6px)',
-                        boxShadow: '0 8px 28px rgba(0, 0, 0, 0.12)',
-                        borderColor: '#d32f2f',
-                      },
-                    }}
-                  >
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: '#555',
-                        fontWeight: 500,
-                        fontSize: '0.95rem',
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      {spec}
-                    </Typography>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-
-          {/* Main Section - Description Left, Image Right */}
-          <Grid container spacing={8} alignItems="flex-start" sx={{ mb: 16 }}>
-            {/* Left: Description */}
-            <Grid item xs={12} md={6}>
-              <Box>
-                <Typography
-                  variant="h2"
-                  sx={{
-                    fontWeight: 700,
-                    color: '#1a1a1a',
-                    mb: 2,
-                    fontSize: { xs: '2rem', md: '2.5rem' },
-                    lineHeight: 1.2,
-                  }}
-                >
-                  {product.title}
-                </Typography>
-
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 3,
-                    bgcolor: '#d32f2f',
-                    borderRadius: '2px',
-                    mb: 4,
-                  }}
-                />
-
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: '#555',
-                    mb: 6,
-                    lineHeight: 1.8,
-                    fontSize: '1.1rem',
-                    fontWeight: 400,
-                  }}
-                >
-                  {product.longDescription}
-                </Typography>
-
-                {/* CTA Button */}
-                <Button
-                  href="tel:+1-800-688-6359"
-                  variant="contained"
-                  size="large"
-                  sx={{
-                    bgcolor: '#d32f2f',
-                    color: '#fff',
-                    py: 1.8,
-                    px: 5,
-                    fontSize: '1rem',
-                    fontWeight: 600,
-                    textTransform: 'none',
-                    borderRadius: 1,
-                    boxShadow: '0 4px 16px rgba(211, 47, 47, 0.2)',
-                    '&:hover': {
-                      bgcolor: '#b71c1c',
-                      boxShadow: '0 8px 24px rgba(211, 47, 47, 0.35)',
-                      transform: 'translateY(-2px)',
-                    },
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  Request Quote (Call Now)
-                </Button>
-              </Box>
-            </Grid>
-
-            {/* Right: Image */}
-            <Grid item xs={12} md={6}>
-              <Box
-                sx={{
-                  position: 'relative',
-                  borderRadius: 2,
-                  overflow: 'hidden',
-                  boxShadow: '0 10px 40px rgba(0,0,0,0.1)',
-                  backgroundColor: '#fff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  minHeight: 450,
-                  transition: 'box-shadow 0.3s ease',
-                  '&:hover': {
-                    boxShadow: '0 15px 50px rgba(0,0,0,0.15)',
-                  },
-                }}
-              >
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                    padding: '30px',
-                  }}
-                />
-              </Box>
-            </Grid>
-          </Grid>
+          <nav className="pd-breadcrumb__nav">
+            <Link to="/" className="pd-breadcrumb__link">Home</Link>
+            <span className="pd-breadcrumb__sep">/</span>
+            <Link to="/products" className="pd-breadcrumb__link">Products</Link>
+            <span className="pd-breadcrumb__sep">/</span>
+            <span className="pd-breadcrumb__current">{product.title}</span>
+          </nav>
         </Container>
-      </Box>
+      </div>
 
-      {/* Features Section */}
-      <Container maxWidth="lg" sx={{ py: 16 }}>
-        <Box sx={{ mb: 12 }}>
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: 700,
-              color: '#1a1a1a',
-              mb: 2,
-              fontSize: '2rem',
-            }}
-          >
-            Features
-          </Typography>
-          <Box
-            sx={{
-              width: 60,
-              height: 3,
-              bgcolor: '#d32f2f',
-              borderRadius: '2px',
-              mb: 8,
-            }}
-          />
-          <Grid container spacing={4}>
-            {product.features.map((feature, idx) => (
-              <Grid item xs={12} sm={6} md={4} key={idx}>
-                <Card
-                  sx={{
-                    height: '100%',
-                    border: 'none',
-                    background: '#fff',
-                    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)',
-                    borderRadius: 2,
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    p: 3,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    '&:hover': {
-                      transform: 'translateY(-6px)',
-                      boxShadow: '0 8px 28px rgba(0, 0, 0, 0.12)',
-                    },
-                  }}
-                >
-                  <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
-                    <Box
-                      sx={{
-                        width: 36,
-                        height: 36,
-                        borderRadius: '50%',
-                        bgcolor: '#ffe6e6',
-                        color: '#d32f2f',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0,
-                        fontSize: '1.2rem',
-                        fontWeight: 700,
-                      }}
-                    >
-                      ✓
-                    </Box>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        fontWeight: 600,
-                        color: '#333',
-                        fontSize: '0.95rem',
-                        lineHeight: 1.6,
-                      }}
-                    >
-                      {feature}
-                    </Typography>
-                  </Box>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+      {/* Hero: Gallery + Info */}
+      <section className="pd-hero">
+        <Container maxWidth="lg">
+          <div className="pd-hero__grid">
+            {/* Left: Image Gallery */}
+            <div className="pd-hero__gallery">
+              <ImageGallery images={galleryImages} title={product.title} />
+            </div>
 
-        {/* Benefits Section */}
-        <Box sx={{ mb: 12 }}>
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: 700,
-              color: '#1a1a1a',
-              mb: 2,
-              fontSize: '2rem',
-            }}
-          >
-            Business Benefits
-          </Typography>
-          <Box
-            sx={{
-              width: 60,
-              height: 3,
-              bgcolor: '#d32f2f',
-              borderRadius: '2px',
-              mb: 8,
-            }}
-          />
-          <Grid container spacing={4}>
-            {product.benefits.map((benefit, idx) => (
-              <Grid item xs={12} sm={6} md={4} key={idx}>
-                <Card
-                  sx={{
-                    height: '100%',
-                    background: '#fff',
-                    border: '1px solid #f0f0f0',
-                    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)',
-                    borderRadius: 2,
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    p: 3.5,
-                    '&:hover': {
-                      transform: 'translateY(-6px)',
-                      boxShadow: '0 8px 28px rgba(0, 0, 0, 0.12)',
-                      borderColor: '#d32f2f',
-                    },
-                  }}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: '#555',
-                      fontWeight: 500,
-                      fontSize: '0.95rem',
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {benefit}
-                  </Typography>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+            {/* Right: Product Info */}
+            <div className="pd-hero__info">
+              <Chip
+                label={product.category}
+                size="small"
+                sx={{
+                  bgcolor: '#fff0f0',
+                  color: '#d32f2f',
+                  fontWeight: 700,
+                  fontSize: '0.78rem',
+                  letterSpacing: '0.04em',
+                  mb: 2,
+                  borderRadius: '4px',
+                }}
+              />
+              <h1 className="pd-hero__title">{product.title}</h1>
+              <p className="pd-hero__desc">{product.longDescription}</p>
 
-        {/* Final CTA Section */}
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 3,
-            p: 8,
-            background: '#fff',
-            border: '1px solid #f0f0f0',
-            borderRadius: 2,
-            boxShadow: '0 4px 24px rgba(211, 47, 47, 0.08)',
-            textAlign: 'center',
-            mt: 4,
-            transition: 'all 0.3s ease',
-            '&:hover': {
-              boxShadow: '0 8px 32px rgba(211, 47, 47, 0.15)',
-            },
-          }}
-        >
-          <Typography
-            variant="h4"
-            sx={{
-              fontWeight: 700,
-              color: '#1a1a1a',
-              mb: 2,
-              fontSize: '1.8rem',
-            }}
-          >
-            Ready to Get Started?
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              color: '#666',
-              mb: 4,
-              fontSize: '1rem',
-              maxWidth: 500,
-              lineHeight: 1.6,
-            }}
-          >
-            Contact our team today to learn more about this product and how it can benefit your business.
-          </Typography>
-          <Button
-            href="tel:+1-800-688-6359"
-            variant="contained"
-            size="large"
-            sx={{
-              bgcolor: '#d32f2f',
-              color: '#fff',
-              px: 6,
-              py: 1.8,
-              fontSize: '1rem',
-              fontWeight: 600,
-              textTransform: 'none',
-              borderRadius: 1,
-              boxShadow: '0 4px 16px rgba(211, 47, 47, 0.2)',
-              '&:hover': {
-                bgcolor: '#b71c1c',
-                boxShadow: '0 8px 24px rgba(211, 47, 47, 0.35)',
-                transform: 'translateY(-2px)',
-              },
-              transition: 'all 0.3s ease',
-            }}
-          >
-            Call Now
-          </Button>
-        </Box>
-      </Container>
+              <div className="pd-hero__actions">
+                <a href="tel:+1-800-688-6359" className="pd-btn pd-btn--primary">
+                  Call for a Quote
+                </a>
+                <a href="/contact" className="pd-btn pd-btn--secondary">
+                  Contact Us
+                </a>
+              </div>
+
+              {/* Quick Specs Highlight */}
+              {product.specifications.length > 0 && product.specifications[0] !== 'To be announced' && (
+                <div className="pd-quick-specs">
+                  <p className="pd-quick-specs__label">Key Specifications</p>
+                  <div className="pd-quick-specs__list">
+                    {product.specifications.slice(0, 3).map((spec, idx) => {
+                      const { label, value } = parseSpec(spec);
+                      return (
+                        <div key={idx} className="pd-quick-spec-item">
+                          <span className="pd-quick-spec-item__label">{label}</span>
+                          <span className="pd-quick-spec-item__value">{value}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Specifications Table */}
+      {product.specifications.length > 0 && product.specifications[0] !== 'To be announced' && (
+        <section className="pd-section pd-section--gray">
+          <Container maxWidth="lg">
+            <div className="pd-section__header">
+              <h2 className="pd-section__title">Specifications</h2>
+              <div className="pd-section__rule" />
+            </div>
+            <div className="pd-specs-table">
+              {product.specifications.map((spec, idx) => {
+                const { label, value } = parseSpec(spec);
+                return (
+                  <div key={idx} className={`pd-spec-row${idx % 2 === 0 ? '' : ' pd-spec-row--alt'}`}>
+                    <div className="pd-spec-row__label">{label}</div>
+                    <div className="pd-spec-row__value">{value || '—'}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {/* Features + Benefits */}
+      <section className="pd-section">
+        <Container maxWidth="lg">
+          <div className="pd-fb-grid">
+            {/* Features */}
+            <div>
+              <div className="pd-section__header">
+                <h2 className="pd-section__title">Features</h2>
+                <div className="pd-section__rule" />
+              </div>
+              <ul className="pd-checklist">
+                {product.features.map((feature, idx) => (
+                  <li key={idx} className="pd-checklist__item">
+                    <span className="pd-checklist__icon">&#10003;</span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Benefits */}
+            <div>
+              <div className="pd-section__header">
+                <h2 className="pd-section__title">Business Benefits</h2>
+                <div className="pd-section__rule" />
+              </div>
+              <ul className="pd-checklist pd-checklist--benefits">
+                {product.benefits.map((benefit, idx) => (
+                  <li key={idx} className="pd-checklist__item">
+                    <span className="pd-checklist__icon pd-checklist__icon--benefit">&#9679;</span>
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* CTA Banner */}
+      <section className="pd-cta">
+        <Container maxWidth="lg">
+          <div className="pd-cta__inner">
+            <div>
+              <h2 className="pd-cta__title">Ready to Get Started?</h2>
+              <p className="pd-cta__sub">
+                Contact our team today — we're happy to answer questions, provide specs, and arrange a demo.
+              </p>
+            </div>
+            <div className="pd-cta__actions">
+              <a href="tel:+1-800-688-6359" className="pd-btn pd-btn--primary pd-btn--lg">
+                &#128222;&nbsp; 1-800-688-6359
+              </a>
+              <a href="/contact" className="pd-btn pd-btn--outline pd-btn--lg">
+                Send a Message
+              </a>
+            </div>
+          </div>
+        </Container>
+      </section>
 
       <Footer />
     </>

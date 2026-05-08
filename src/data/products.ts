@@ -1,13 +1,26 @@
 import elitePro from '../assets/Elite ii pro.jpg';
+import elitePro1 from '../assets/Elite ii pro-1.jpg';
+import elitePro2 from '../assets/Elite ii pro-2.jpg';
+import elitePro3 from '../assets/Elite ii pro-3.jpg';
+import elitePro4 from '../assets/Elite ii pro-4.jpg';
 import nh3 from '../assets/NH-3-0.jpg';
 import nh6 from '../assets/NH-6-0.jpg';
 import ms906 from '../assets/MS906PRO.jpg';
+import ms906_1 from '../assets/MS906PRO-1.jpg';
+import ms906_2 from '../assets/MS906PRO-2.jpg';
 import tc100 from '../assets/TC-100-main.png';
+import tc100_1 from '../assets/TC-100-1.png';
 import tc211 from '../assets/TC-211-Main.png';
+import tc211_1 from '../assets/TC-211-1.jpg';
+import tc211_2 from '../assets/TC-211-2.jpg';
+import tc211_3 from '../assets/TC-211-3.jpg';
 import r134a from '../assets/R134A AC Machine.jpg';
+import r134aMachine from '../assets/R134A Machine.jpg';
+import r134aMain from '../assets/R134A Machine Main.png';
 import r1234yf from '../assets/R1234YF Machine Main.png';
 import slideTop1 from '../assets/SlideTop-1.png';
 import slideTop2 from '../assets/SlideTop-2.png';
+import slideTop3 from '../assets/SlideTop-3.png';
 
 export interface ProductData {
   id: string;
@@ -16,6 +29,7 @@ export interface ProductData {
   shortDescription: string;
   longDescription: string;
   image: string;
+  images: string[];
   price: string;
   specifications: string[];
   features: string[];
@@ -33,6 +47,7 @@ export const products: ProductData[] = [
 
 With advanced diagnostic capabilities, the Elite II Pro handles the toughest job requirements while maintaining the highest quality standards.`,
     image: elitePro,
+    images: [elitePro, elitePro1, elitePro2, elitePro3, elitePro4],
     price: '$6,500',
     specifications: [
       'Max Wheel Diameter: 36 inches',
@@ -69,6 +84,7 @@ With advanced diagnostic capabilities, the Elite II Pro handles the toughest job
 
 Engineered for high-volume operations, the NH-3 combines precision with industrial-strength construction for reliable performance.`,
     image: nh3,
+    images: [nh3],
     price: '$8,900',
     specifications: [
       'Max Wheel Diameter: 40 inches',
@@ -105,6 +121,7 @@ Engineered for high-volume operations, the NH-3 combines precision with industri
 
 With integrated diagnostic capabilities, the NH-6 handles everything from standard balancing to advanced vehicle diagnostics.`,
     image: nh6,
+    images: [nh6],
     price: '$10,500',
     specifications: [
       'Max Wheel Diameter: 38 inches',
@@ -141,6 +158,7 @@ With integrated diagnostic capabilities, the NH-6 handles everything from standa
 
 Developed for modern repair shops seeking advanced diagnostics with user-friendly operation.`,
     image: ms906,
+    images: [ms906, ms906_1, ms906_2],
     price: '$3,200',
     specifications: [
       'Compatible with: All major brands',
@@ -177,6 +195,7 @@ Developed for modern repair shops seeking advanced diagnostics with user-friendl
 
 Designed for shops looking to increase efficiency without compromising on quality.`,
     image: tc100,
+    images: [tc100, tc100_1],
     price: '$8,500',
     specifications: [
       'Max Wheel Diameter: 24 inches',
@@ -213,6 +232,7 @@ Designed for shops looking to increase efficiency without compromising on qualit
 
 Built for high-volume shops that demand consistent performance throughout the day.`,
     image: tc211,
+    images: [tc211, tc211_1, tc211_2, tc211_3],
     price: '$9,200',
     specifications: [
       'Max Wheel Diameter: 28 inches',
@@ -249,6 +269,7 @@ Built for high-volume shops that demand consistent performance throughout the da
 
 Ideal for shops servicing modern vehicles with R134A refrigerant systems.`,
     image: r134a,
+    images: [r134a, r134aMachine, r134aMain],
     price: '$4,200',
     specifications: [
       'Refrigerant: R134A',
@@ -285,6 +306,7 @@ Ideal for shops servicing modern vehicles with R134A refrigerant systems.`,
 
 Essential for shops servicing new vehicles with eco-friendly refrigerant systems.`,
     image: r1234yf,
+    images: [r1234yf],
     price: '$6,500',
     specifications: [
       'Refrigerant: R1234YF',
@@ -321,6 +343,7 @@ Essential for shops servicing new vehicles with eco-friendly refrigerant systems
 
 Safety certified and engineered for dependable operation in demanding workshop environments.`,
     image: slideTop1,
+    images: [slideTop1, slideTop3],
     price: '$7,200',
     specifications: [
       'Lift Capacity: 12,000 lbs',
@@ -357,6 +380,7 @@ Safety certified and engineered for dependable operation in demanding workshop e
 
 Engineered for maximum stability and safety in commercial environments.`,
     image: slideTop2,
+    images: [slideTop2, slideTop3],
     price: '$9,500',
     specifications: [
       'Lift Capacity: 14,000 lbs',
@@ -393,6 +417,7 @@ Engineered for maximum stability and safety in commercial environments.`,
 
 More details and specifications will be available soon.`,
     image: '',
+    images: [],
     price: 'Coming Soon',
     specifications: [
       'To be announced',
@@ -418,6 +443,7 @@ More details and specifications will be available soon.`,
 
 Stay tuned for the official release and specifications.`,
     image: '',
+    images: [],
     price: 'Coming Soon',
     specifications: [
       'To be announced',
@@ -443,6 +469,7 @@ Stay tuned for the official release and specifications.`,
 
 More details will be revealed soon.`,
     image: '',
+    images: [],
     price: 'Coming Soon',
     specifications: [
       'To be announced',
@@ -468,6 +495,7 @@ More details will be revealed soon.`,
 
 Check back for exciting announcements and detailed product information.`,
     image: '',
+    images: [],
     price: 'Coming Soon',
     specifications: [
       'To be announced',
